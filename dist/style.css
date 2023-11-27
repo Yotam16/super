@@ -1,0 +1,61 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+ul,
+ol,
+li {
+  list-style: none;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+.navbar {
+  background-color: purple;
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+}
+.navbar__actions {
+  display: flex;
+}
+
+.dashboard {
+  background-color: black;
+  flex: 10;
+  display: flex;
+}
+
+.cart {
+  background-color: red;
+  flex: 2;
+}
+
+.main-area {
+  flex: 8;
+  background-color: aqua;
+  display: flex;
+  flex-direction: column;
+}
+
+.catagory-list {
+  flex: 1;
+  background-color: blue;
+}
+
+.products-grid {
+  flex: 7;
+  background-color: yellow;
+}
