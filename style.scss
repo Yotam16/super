@@ -7,10 +7,11 @@ body {
 }
 .navbar {
     background-color: purple;
-    flex: 1;
+    flex-basis: 4rem;
+    flex-shrink: 0;
     display: flex;
     justify-content: space-between;
-
+    
     &__actions {
         display: flex;
     }
@@ -18,9 +19,9 @@ body {
 
 
 .dashboard {
-    background-color: black;
     flex: 10;
     display: flex;
+    overflow: hidden;
 }
 
 .cart {
@@ -30,9 +31,9 @@ body {
 
 .main-area {
     flex: 8;
-    background-color: aqua;
     display: flex;
     flex-direction: column;
+    
 }
 
 .catagory-list {
@@ -40,7 +41,21 @@ body {
     background-color: blue;
 }
 
+
 .products-grid {
     flex: 7;
+    overflow-y: auto;
     background-color: yellow;
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(auto-fit, minmax(5rem, 12rem));
+    gap: 1rem;
+    grid-auto-flow: row;
+    grid-auto-rows: 16rem;
+    padding: 2rem;
+
+    &__item {
+        background-color: white;
+    }
 }
+
