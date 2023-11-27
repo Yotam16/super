@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sign in</title>
+</head>
+<body>
+    <header>
+        <h1>my supermarket</h1>
+    </header>
+    <main>
+        <form id="signInForm" name="sign-in">
+            <h3>start a new account</h3>
+            <div>
+                <label for="firstName">first name</label>
+                <input type="text" id="firstName" required>
+            </div>
+            <div>
+                <label for="lastName">last name</label>
+                <input type="text" id="lastName" required>
+            </div>
+            <div>
+                <label for="age">age</label>
+                <input type="text" id="age" required>
+            </div>
+            <div>
+                <label for="gender">gender</label>
+                <select id="gender" required>
+                    <option value="male">male</option>
+                    <option value="female">female</option>
+                </select>
+            </div>
+            <div>
+                <label for="email">email</label>
+                <input type="email" id="email" required>
+            </div>
+            <div>
+                <label for="userName">user name</label>
+                <input type="text" id="userName" required>
+            </div>
+            <div>
+                <label for="password">password</label>
+                <input type="password" id="password" required>
+            </div>
+            <div>
+                <label for="passwordVerify">password verify</label>
+                <input type="password" id="passwordVerify" required>
+            </div>
+            <button type="submit">sign in</button>
+            <p id="errorMessage"></p>
+        </form>
+        <p>already have an account? <a href="login.html">log in</a></p>
+    </main>
+</body>
+</html>
