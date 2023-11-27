@@ -2,7 +2,7 @@
 
  - html for loging (tal) and ts
 - html for signing (tal) and ts
- - html for navbar (yotam)
+ - html for navbar (yotam)  X
  - css
  - data for products and carts (yotam) V 
  - reset for css
