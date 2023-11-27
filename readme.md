@@ -5,3 +5,5 @@
  - html for navbar (yotam)
  - css
  - data for products and carts (yotam)
+ - reset for css
+ - tsconfig (yotam)
