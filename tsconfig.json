@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+        "target": "ES5",
+        "lib": ["ESNext", "DOM", "DOM.Iterable"],
+        "strictNullChecks": true,
+        "noImplicitAny": true,
+        "useUnknownInCatchVariables": true,
+        "module" : "es6", 
+        "declaration": true,
+        "declarationMap": true,
+        
+    },
+    "include": ["./*.ts"]
+  }
