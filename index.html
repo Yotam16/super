@@ -4,13 +4,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🛒 Super-App </title>
+    <title>🛒 Super-Market </title>
+
+    <link rel="stylesheet" href="dist/style.css">
 </head>
 
 <body>
 
+    <header class="navbar">
+        <a class="navbar__logo" href="/">Super 🛒</a>
+        <menu class="navbar__actions">
+            <li class="navbar__item"><a href="/profile" class="navbar__profile">🤵</a></li>
+            <li class="navbar__item"><a href="/" class="navbar__orders">🧾</a></li>
+            <li class="navbar__item"><a href="/" class="navbar__cart">🛒</a></li>
+        </menu>
+    </header>
 
+    <main class="dashboard">
+        <div class="cart"></div>
+        <article class="main-area">
+            <div class="catagory-list"></div>
+            <div class="products-grid"></div>
+        </article>
+    </main>
 
+    <script type="module" src="dist/main.js"></script>
 </body>
 
 </html>
