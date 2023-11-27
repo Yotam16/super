@@ -21,3 +21,8 @@
 - CatagoriesListView View + Contoller
 - CartView View + Controller
 - ProductView.view.ts
+
+Floating Misisons:
+- Final Order form page
+- Add final order to profile "my carts" list
+- Profile view page
