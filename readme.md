@@ -17,11 +17,11 @@
  - get product
 
 (Yizhak + Gilad)
-- Main HTML template (index)
-- ProductsGridView View + Controller
-- CatagoriesListView View + Contoller
-- CartView View + Controller
-- ProductView.view.ts
+- [] Main HTML template (index)
+- [] ProductsGridView View + Controller
+- [] CatagoriesListView View + Contoller
+- [] CartView View + Controller
+- [] ProductView.view.ts
 
 Floating Misisons:
 - Final Order form page
