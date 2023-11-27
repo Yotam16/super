@@ -17,6 +17,7 @@
  - get product
 
 (Yizhak + Gilad)
+- Main HTML template (index)
 - ProductsGridView View + Controller
 - CatagoriesListView View + Contoller
 - CartView View + Controller
