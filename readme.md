@@ -15,3 +15,9 @@
  - reload cart (after add/remove)
  - get product list
  - get product
+
+(Yizhak + Gilad)
+- ProductsGridView View + Controller
+- CatagoriesListView View + Contoller
+- CartView View + Controller
+- ProductView.view.ts
