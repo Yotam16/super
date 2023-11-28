@@ -1,9 +1,7 @@
-export function playClickSound() {
-    var audio = new Audio('chime.wav');
-    audio.play();
-}
-export function addToCartSound() {
-    var audio = new Audio('ding.mp3');
+export var SOUND_CLICK = 'assets/sounds/chime.wav';
+export var SOUND_ADDTOCART = 'assets/sounds/ding.mp3';
+export function playSound(sound) {
+    var audio = new Audio(sound);
     audio.play();
 }
 // to deploy use these lines, don't forget to import as well!

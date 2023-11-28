@@ -1,14 +1,10 @@
-export function playClickSound() {
+export const SOUND_CLICK = 'assets/sounds/chime.wav';
+export const SOUND_ADDTOCART = 'assets/sounds/ding.mp3'
 
-    const audio = new Audio('chime.wav');
+export function playSound(sound: string) {
+    const audio = new Audio(sound);
+
     audio.play();
-}
-
-export function addToCartSound() {
-
-    const audio = new Audio('ding.mp3');
-    audio.play();
-
 }
 
 // to deploy use these lines, don't forget to import as well!
