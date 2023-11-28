@@ -11,6 +11,8 @@ export type Product = {
     pic_path: string;
 }
 
+export const products = [] as Product[];
+
 export type Cart = {
 
     userID: number;
@@ -101,7 +103,9 @@ export async function getProductByName(name: string): Promise<Product | undefine
 }
 
 
-export async function getAllProducts(): Promise<Product[] | undefined> {
+type OnProductsLoaded = (products: Product[]) => void;
+
+export async function loadAllProducts(onLoadCallback: OnProductsLoaded) {
     const filePath = "./product_list.json";
 
     try {
@@ -113,11 +117,10 @@ export async function getAllProducts(): Promise<Product[] | undefined> {
         }
 
         const productList: Product[] = await response.json();
+        onLoadCallback(productList);
 
-        return productList;
     } catch (error) {
-        console.error("Error reading product list from file:", error);
-        return undefined;
+        throw new Error("Error reading product list from file:\n" + error);
     }
 }
 

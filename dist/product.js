@@ -34,6 +34,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+export var products = [];
 export function addToCart(product, cart) {
     if (product.inStock) {
         cart.products.push(product);
@@ -121,8 +122,8 @@ export function getProductByName(name) {
         });
     });
 }
-export function getAllProducts() {
-    return __awaiter(this, void 0, Promise, function () {
+export function loadAllProducts(onLoadCallback) {
+    return __awaiter(this, void 0, void 0, function () {
         var filePath, response, productList, error_3;
         return __generator(this, function (_a) {
             switch (_a.label) {
@@ -140,11 +141,11 @@ export function getAllProducts() {
                     return [4 /*yield*/, response.json()];
                 case 3:
                     productList = _a.sent();
-                    return [2 /*return*/, productList];
+                    onLoadCallback(productList);
+                    return [3 /*break*/, 5];
                 case 4:
                     error_3 = _a.sent();
-                    console.error("Error reading product list from file:", error_3);
-                    return [2 /*return*/, undefined];
+                    throw new Error("Error reading product list from file:\n" + error_3);
                 case 5: return [2 /*return*/];
             }
         });
