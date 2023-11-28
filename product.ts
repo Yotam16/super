@@ -1,53 +1,53 @@
-export type category_t = "Meat" | "Dairy" |  "Vegetables" | "Fruit" | "Bread" | "Hygene" | 
-                                                    "Office" | "Clothing" | "Other";
+export type Category = "Meat" | "Dairy" | "Vegetables" | "Fruit" | "Bread" | "Hygene" |
+    "Office" | "Clothing" | "Other";
 
-export type product_t = {
+export type Product = {
 
     name: string;
     PID: number;
-    cat: category_t;
+    cat: Category;
     price: number;
     inStock: boolean;
     pic_path: string;
 }
 
-export type cart_t = {
+export type Cart = {
 
     userID: number;
-    products: product_t[];
+    products: Product[];
     total: number;
 }
 
-export function addToCart(product: product_t, cart: cart_t): cart_t {
+export function addToCart(product: Product, cart: Cart): Cart {
 
     if (product.inStock) {
-        
+
         cart.products.push(product);
         cart.total += product.price;
     } else {
-        
+
         console.log(`Product ${product.name} is not in stock.`);
     }
 
     return cart;
 }
 
-export function newCart(uid: number): cart_t {
-    
-    const cart: cart_t = { userID: uid, products: [], total: 0 };
+export function newCart(uid: number): Cart {
+
+    const cart: Cart = { userID: uid, products: [], total: 0 };
     return cart;
 }
 
-export function removeFromCart(product: product_t,  cart: cart_t, quantity: number): cart_t {
+export function removeFromCart(product: Product, cart: Cart, quantity: number): Cart {
 
     const pid = product.PID;
 
     for (let i = 0; i < cart.products.length; i++) {
-       
-        if (pid === cart.products[i].PID) {  
-            
+
+        if (pid === cart.products[i].PID) {
+
             cart.products.splice(i, 1);
-            quantity -=1;
+            quantity -= 1;
 
             if (0 === quantity) {
 
@@ -62,7 +62,7 @@ export function removeFromCart(product: product_t,  cart: cart_t, quantity: numb
 }
 
 
-export async function getProductbyID(pid: number): Promise<product_t | undefined> {
+export async function getProductbyID(pid: number): Promise<Product | undefined> {
     const filePath = "./product_list.json";
 
     try {
@@ -72,7 +72,7 @@ export async function getProductbyID(pid: number): Promise<product_t | undefined
             throw new Error(`Failed to fetch the file. Status: ${response.status}`);
         }
 
-        const productList: product_t[] = await response.json();
+        const productList: Product[] = await response.json();
 
         return productList.find(product => product.PID === pid);
     } catch (error) {
@@ -81,7 +81,7 @@ export async function getProductbyID(pid: number): Promise<product_t | undefined
     }
 }
 
-export async function getProductByName(name: string): Promise<product_t | undefined> {
+export async function getProductByName(name: string): Promise<Product | undefined> {
     const filePath = "./product_list.json";
 
     try {
@@ -91,7 +91,7 @@ export async function getProductByName(name: string): Promise<product_t | undefi
             throw new Error(`Failed to fetch the file. Status: ${response.status}`);
         }
 
-        const productList: product_t[] = await response.json();
+        const productList: Product[] = await response.json();
 
         return productList.find(product => product.name === name);
     } catch (error) {
@@ -101,7 +101,7 @@ export async function getProductByName(name: string): Promise<product_t | undefi
 }
 
 
-export async function getAllProducts(): Promise<product_t[] | undefined> {
+export async function getAllProducts(): Promise<Product[] | undefined> {
     const filePath = "./product_list.json";
 
     try {
@@ -112,7 +112,7 @@ export async function getAllProducts(): Promise<product_t[] | undefined> {
             throw new Error(`Failed to fetch product list. Status: ${response.status}`);
         }
 
-        const productList: product_t[] = await response.json();
+        const productList: Product[] = await response.json();
 
         return productList;
     } catch (error) {
@@ -121,8 +121,8 @@ export async function getAllProducts(): Promise<product_t[] | undefined> {
     }
 }
 
-export function reloadCart(cart: cart_t) { //????
+export function reloadCart(cart: Cart) { //????
 
-    return cart; 
+    return cart;
 }
 
