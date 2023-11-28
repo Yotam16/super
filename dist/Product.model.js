@@ -35,67 +35,36 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 export var products = [];
-export function getProductbyID(pid) {
-    return __awaiter(this, void 0, Promise, function () {
-        var filePath, response, productList, error_1;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    filePath = "./product_list.json";
-                    _a.label = 1;
-                case 1:
-                    _a.trys.push([1, 4, , 5]);
-                    return [4 /*yield*/, fetch(filePath)];
-                case 2:
-                    response = _a.sent();
-                    if (!response.ok) {
-                        throw new Error("Failed to fetch the file. Status: " + response.status);
-                    }
-                    return [4 /*yield*/, response.json()];
-                case 3:
-                    productList = _a.sent();
-                    return [2 /*return*/, productList.find(function (product) { return product.PID === pid; })];
-                case 4:
-                    error_1 = _a.sent();
-                    console.error("Error reading product list:", error_1);
-                    return [2 /*return*/, undefined];
-                case 5: return [2 /*return*/];
-            }
-        });
-    });
+export var onProductsChangedListeners = [];
+// Add a target who listens to when products is changed
+export function addOnProductsChangedListener(callback) {
+    onProductsChangedListeners.push(callback);
 }
-export function getProductByName(name) {
-    return __awaiter(this, void 0, Promise, function () {
-        var filePath, response, productList, error_2;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    filePath = "./product_list.json";
-                    _a.label = 1;
-                case 1:
-                    _a.trys.push([1, 4, , 5]);
-                    return [4 /*yield*/, fetch(filePath)];
-                case 2:
-                    response = _a.sent();
-                    if (!response.ok) {
-                        throw new Error("Failed to fetch the file. Status: " + response.status);
-                    }
-                    return [4 /*yield*/, response.json()];
-                case 3:
-                    productList = _a.sent();
-                    return [2 /*return*/, productList.find(function (product) { return product.name === name; })];
-                case 4:
-                    error_2 = _a.sent();
-                    console.error("Error reading product list:", error_2);
-                    return [2 /*return*/, undefined];
-                case 5: return [2 /*return*/];
-            }
-        });
-    });
+// When products is changed, call all targets who listens.
+export function OnProductsChanged(products) {
+    console.log("On Products Changed event fired.");
+    onProductsChangedListeners.forEach(function (listener) { return listener(products); });
+}
+export function getProducts() {
+    return products.slice();
+}
+export function getProductbyID(productId) {
+    var product = products.find(function (product) { return product.PID === productId; });
+    if (!product)
+        throw new Error("getProduct - couldn't find product with id " + productId);
+    return product;
+}
+export function populateProducts(newProducts) {
+    clearProducts();
+    newProducts.forEach(function (product) { return products.push(product); });
+    OnProductsChanged(products);
+}
+export function clearProducts() {
+    products.splice(0);
 }
 export function loadAllProducts(onLoadCallback) {
     return __awaiter(this, void 0, void 0, function () {
-        var filePath, response, productList, error_3;
+        var filePath, response, productList, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -115,10 +84,38 @@ export function loadAllProducts(onLoadCallback) {
                     onLoadCallback(productList);
                     return [3 /*break*/, 5];
                 case 4:
-                    error_3 = _a.sent();
-                    throw new Error("Error reading product list from file:\n" + error_3);
+                    error_1 = _a.sent();
+                    throw new Error("Error reading product list from file:\n" + error_1);
                 case 5: return [2 /*return*/];
             }
         });
     });
 }
+// export async function getProductbyID(pid: number): Promise<Product | undefined> {
+//     const filePath = "./product_list.json";
+//     try {
+//         const response = await fetch(filePath);
+//         if (!response.ok) {
+//             throw new Error(`Failed to fetch the file. Status: ${response.status}`);
+//         }
+//         const productList: Product[] = await response.json();
+//         return productList.find(product => product.PID === pid);
+//     } catch (error) {
+//         console.error("Error reading product list:", error);
+//         return undefined;
+//     }
+// }
+// export async function getProductByName(name: string): Promise<Product | undefined> {
+//     const filePath = "./product_list.json";
+//     try {
+//         const response = await fetch(filePath);
+//         if (!response.ok) {
+//             throw new Error(`Failed to fetch the file. Status: ${response.status}`);
+//         }
+//         const productList: Product[] = await response.json();
+//         return productList.find(product => product.name === name);
+//     } catch (error) {
+//         console.error("Error reading product list:", error);
+//         return undefined;
+//     }
+// }
