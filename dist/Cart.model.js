@@ -25,6 +25,7 @@ export function addToCart(product, cart) {
     else {
         console.log("Product " + product.name + " is not in stock.");
     }
+    console.log("item " + product.name + " removed from cart.");
     return cart;
 }
 export function reloadCart(cart) {

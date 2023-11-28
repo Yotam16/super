@@ -47,6 +47,7 @@ export function addToCart(product: Product, cart: Cart): Cart {
         console.log(`Product ${product.name} is not in stock.`);
     }
 
+    console.log(`item ${product.name} removed from cart.`);
     return cart;
 }
 

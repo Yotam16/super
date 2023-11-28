@@ -54,6 +54,12 @@ export function getProductbyID(productId) {
         throw new Error("getProduct - couldn't find product with id " + productId);
     return product;
 }
+export function getProductbyName(name) {
+    var product = products.find(function (product) { return product.name === name; });
+    if (!product)
+        throw new Error("getProduct - couldn't find product with id " + name);
+    return product;
+}
 export function populateProducts(newProducts) {
     clearProducts();
     newProducts.forEach(function (product) { return products.push(product); });
@@ -91,31 +97,3 @@ export function loadAllProducts(onLoadCallback) {
         });
     });
 }
-// export async function getProductbyID(pid: number): Promise<Product | undefined> {
-//     const filePath = "./product_list.json";
-//     try {
-//         const response = await fetch(filePath);
-//         if (!response.ok) {
-//             throw new Error(`Failed to fetch the file. Status: ${response.status}`);
-//         }
-//         const productList: Product[] = await response.json();
-//         return productList.find(product => product.PID === pid);
-//     } catch (error) {
-//         console.error("Error reading product list:", error);
-//         return undefined;
-//     }
-// }
-// export async function getProductByName(name: string): Promise<Product | undefined> {
-//     const filePath = "./product_list.json";
-//     try {
-//         const response = await fetch(filePath);
-//         if (!response.ok) {
-//             throw new Error(`Failed to fetch the file. Status: ${response.status}`);
-//         }
-//         const productList: Product[] = await response.json();
-//         return productList.find(product => product.name === name);
-//     } catch (error) {
-//         console.error("Error reading product list:", error);
-//         return undefined;
-//     }
-// }

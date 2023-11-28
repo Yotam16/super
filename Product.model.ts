@@ -39,6 +39,14 @@ export function getProductbyID(productId: number) {
     return product;
 }
 
+export function getProductbyName(name: string) {
+    const product = products.find((product) => product.name === name);
+    
+    if(!product) throw new Error(`getProduct - couldn't find product with id ${name}`)
+
+    return product;
+}
+
 export function populateProducts(newProducts: Product[]) {
     clearProducts();
     newProducts.forEach((product) => products.push(product));
@@ -69,45 +77,3 @@ export async function loadAllProducts(onLoadCallback: OnProductsLoaded) {
         throw new Error("Error reading product list from file:\n" + error);
     }
 }
-
-
-
-
-
-// export async function getProductbyID(pid: number): Promise<Product | undefined> {
-    //     const filePath = "./product_list.json";
-    
-    //     try {
-    //         const response = await fetch(filePath);
-    
-    //         if (!response.ok) {
-    //             throw new Error(`Failed to fetch the file. Status: ${response.status}`);
-    //         }
-    
-    //         const productList: Product[] = await response.json();
-    
-    //         return productList.find(product => product.PID === pid);
-    //     } catch (error) {
-    //         console.error("Error reading product list:", error);
-    //         return undefined;
-    //     }
-    // }
-    
-    // export async function getProductByName(name: string): Promise<Product | undefined> {
-    //     const filePath = "./product_list.json";
-    
-    //     try {
-    //         const response = await fetch(filePath);
-    
-    //         if (!response.ok) {
-    //             throw new Error(`Failed to fetch the file. Status: ${response.status}`);
-    //         }
-    
-    //         const productList: Product[] = await response.json();
-    
-    //         return productList.find(product => product.name === name);
-    //     } catch (error) {
-    //         console.error("Error reading product list:", error);
-    //         return undefined;
-    //     }
-    // }

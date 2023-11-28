@@ -15,12 +15,12 @@
 ***Yotam***
 - [x] data for products and carts
 - [x] tsconfig - copied the file from the last project
-- [ ] get cart
-- [ ] add to cart
-- [ ] remove from cart
+- [] get cart
+- [x] add to cart
+- [x] remove from cart
 - [ ] reload cart (after add/remove)
-- [ ] get product list
-- [ ] get product
+- [x] get product list
+- [x] get product by ID/ by name
 
 ***Yizhak + Gilad***
 - [ ] Main HTML template (index)
