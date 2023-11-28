@@ -1,4 +1,4 @@
-import { loadAllProducts } from "./product.js";
+import * as Product from "./Product.model.js";
 function onProductsLoaded(products) {
     console.log("products loaded, can continue");
     console.log(products);
@@ -6,6 +6,6 @@ function onProductsLoaded(products) {
 }
 function main() {
     console.log("Loading products from file...");
-    loadAllProducts(onProductsLoaded);
+    Product.loadAllProducts(onProductsLoaded);
 }
 main();
