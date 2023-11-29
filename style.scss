@@ -241,3 +241,18 @@ body {
     }
 
 }
+
+#navbar {
+    left:5px;
+    top: 5px;
+}
+
+
+.navbar__profile img,
+.navbar__orders img,
+.navbar__cart img,
+.navbar__namesearch img,
+.navbar__idsearch img {
+    width: 25px;
+    height: 25px;
+}
