@@ -1,9 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap");
 *,
 *::before,
 *::after {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 16px;
 }
 
 html,
@@ -15,4 +18,9 @@ ul,
 ol,
 li {
   list-style: none;
+}
+
+button {
+  appearance: none;
+  all: unset;
 }
