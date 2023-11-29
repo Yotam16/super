@@ -105,7 +105,9 @@ body {
 .cart__button {
   padding: 0.25rem;
   height: 3rem;
+  aspect-ratio: 1;
   margin-inline: 1rem;
+  background-color: white;
 }
 .cart__list {
   background-color: white;
