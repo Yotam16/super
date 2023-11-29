@@ -28,6 +28,22 @@ export function addToCart(product, cart) {
     console.log("item " + product.name + " removed from cart.");
     return cart;
 }
-export function reloadCart(cart) {
-    return cart;
+export function printShoppingCart(cart) {
+    var productListDiv = document.getElementById('productList');
+    console.log('printShoppingCart was called');
+    if (productListDiv) {
+        var productListUl_1 = document.createElement('ul');
+        productListUl_1.setAttribute('id', 'cartList');
+        cart.products.forEach(function (product) {
+            var productItemLi = document.createElement('li');
+            productItemLi.textContent = "Name: " + product.name + ", PID: " + product.PID + ", Category: " + product.cat + ", Price: " + product.price + ", In Stock: " + product.inStock + ", Pic Path: " + product.pic_path;
+            productListUl_1.appendChild(productItemLi);
+        });
+        productListDiv.appendChild(productListUl_1);
+    }
 }
+document.addEventListener('DOMContentLoaded', function () {
+    console.log('event litener for printing the cart list');
+    //const cart = newCart();
+    //printShoppingCart(cart);
+});
