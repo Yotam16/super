@@ -11,7 +11,8 @@
 ***Tal***
 - [ ] html for loging and ts
 - [ ] html for signup and ts
-
+- [ ] Login function in User model
+  
 ***Yotam***
 - [x] data for products and carts
 - [x] tsconfig - copied the file from the last project
