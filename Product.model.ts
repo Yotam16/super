@@ -33,21 +33,21 @@ export function getProducts(): Product[] {
 
 export function getProductbyID(productId: number) {
     const product = products.find((product) => product.PID === productId);
-    
-    if(!product) throw new Error(`getProduct - couldn't find product with id ${productId}`)
+
+    if (!product) throw new Error(`getProduct - couldn't find product with id ${productId}`)
 
     return product;
 }
 
 export function getProductbyName(name: string) {
     const product = products.find((product) => product.name === name);
-    
-    if(!product) throw new Error(`getProduct - couldn't find product with id ${name}`)
+
+    if (!product) throw new Error(`getProduct - couldn't find product with id ${name}`)
 
     return product;
 }
 
-export function populateProducts(newProducts: Product[]) {
+export function setProducts(newProducts: Product[]) {
     clearProducts();
     newProducts.forEach((product) => products.push(product));
 

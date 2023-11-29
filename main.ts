@@ -9,7 +9,7 @@ const currentCart = Cart.newCart(12345);
 
 function onProductsLoaded(loadedProducts: Product.Product[]) {
     console.log(`${loadedProducts.length} products loaded.`);
-    Product.populateProducts(loadedProducts);
+    Product.setProducts(loadedProducts);
 }
 
 function showProductsGrid(products: Product.Product[]) {

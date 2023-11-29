@@ -6,7 +6,7 @@ import { SOUND_ADDTOCART, playSound } from "./sounds.js";
 var currentCart = Cart.newCart(12345);
 function onProductsLoaded(loadedProducts) {
     console.log(loadedProducts.length + " products loaded.");
-    Product.populateProducts(loadedProducts);
+    Product.setProducts(loadedProducts);
 }
 function showProductsGrid(products) {
     ProductGridView.renderProductsGridView(products);

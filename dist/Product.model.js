@@ -60,7 +60,7 @@ export function getProductbyName(name) {
         throw new Error("getProduct - couldn't find product with id " + name);
     return product;
 }
-export function populateProducts(newProducts) {
+export function setProducts(newProducts) {
     clearProducts();
     newProducts.forEach(function (product) { return products.push(product); });
     OnProductsChanged(products);
