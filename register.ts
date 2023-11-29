@@ -1,7 +1,9 @@
-import { loadLoginForm } from "./User.controller.js";
+import { loadRegisterForm } from "./User.controller.js";
 import { loadUsersFromStorage, setUsers } from "./User.model.js";
+
 function main() {
     setUsers(loadUsersFromStorage());
-    loadLoginForm();
+    loadRegisterForm();
 }
+
 main();

@@ -1,7 +1,8 @@
 import { User, addUser, getUsers, isEmailExists, isUserNameExists } from "./User.model.js";
 import { displayErrorMessage } from "./User.view.js";
 
-document.getElementById("loginForm")?.addEventListener("submit", function (event) {
+export function loadLoginForm() {
+  document.getElementById("loginForm")?.addEventListener("submit", function (event) {
     event.preventDefault();
 
     const usernameInput = (
@@ -16,7 +17,7 @@ document.getElementById("loginForm")?.addEventListener("submit", function (event
       (user) =>
         user.userName === usernameInput && user.password === passwordInput
     );
-        console.log(user)
+    console.log(user)
     if (user) {
       console.log("Login successful!");
 
@@ -25,10 +26,19 @@ document.getElementById("loginForm")?.addEventListener("submit", function (event
       displayErrorMessage("Invalid username or password. Please try again.");
     }
   });
+}
 
+
+// TODO - Add verification functions for inputs
+// TODO - Email verification
+// TODO - Age verification
+// TODO - User verification (must be more than 6 letters, must not be only numbers etc..)
+// TODO - Password verification (must be 6-8 characters, must have capital and special character etc..)
+
+export function loadRegisterForm() {
   document.getElementById("signInForm")?.addEventListener("submit", function (event) {
     event.preventDefault();
- 
+
 
     const firstName = (document.getElementById("firstName") as HTMLInputElement)
       .value;
@@ -49,7 +59,7 @@ document.getElementById("loginForm")?.addEventListener("submit", function (event
     const passwordVerify = (
       document.getElementById("passwordVerify") as HTMLInputElement
     ).value;
-//
+    //
     if (password !== passwordVerify) {
       displayErrorMessage("Passwords do not match.");
       return;
@@ -83,3 +93,4 @@ document.getElementById("loginForm")?.addEventListener("submit", function (event
 
     window.location.href = "index.html";
   });
+}
