@@ -5,10 +5,11 @@ function openApp() {
 }
 function main() {
     setUsers(loadUsersFromStorage());
-    var currentUser = loadCurrentUserFromStorage();
-    if (currentUser)
+    try {
+        loadCurrentUserFromStorage();
         openApp();
-    if (!currentUser) {
+    }
+    catch (_a) {
         loadLoginForm();
     }
 }

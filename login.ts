@@ -8,11 +8,10 @@ function openApp() {
 function main() {
 
     setUsers(loadUsersFromStorage());
-    const currentUser = loadCurrentUserFromStorage();
-
-    if (currentUser) openApp();
-
-    if (!currentUser) {
+    try {
+        loadCurrentUserFromStorage();
+        openApp();
+    } catch {
         loadLoginForm();
     }
 
