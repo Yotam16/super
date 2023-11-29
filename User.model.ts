@@ -52,3 +52,26 @@ export function isEmailExists(email: string): boolean {
 export function login(username: string, password: string) {
 
 }
+
+// TODO - a function that loads current user from storage
+export function loadCurrentUserFromStorage(): User {
+  return {
+    firstName: "Tal",
+    lastName: "Bam",
+    age: 1,
+    gender: "female",
+    email: "TalBam@Super.com",
+    userName: "TalBam",
+    password: "123"
+  }
+}
+
+// TODO - a function that saves current user to storage
+export function saveCurrentUserToStorage() {
+
+}
+
+// TODO - a function that deletes current user from storage
+export function deleteCurrentUserFromStorage() {
+
+}

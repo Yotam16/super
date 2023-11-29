@@ -1,6 +1,8 @@
 import { User, addUser, getUsers, isEmailExists, isUserNameExists } from "./User.model.js";
 import { displayErrorMessage } from "./User.view.js";
 
+
+// TODO - When user logged in, save user as current user so main app will know what user logged in.
 export function loadLoginForm() {
   document.getElementById("loginForm")?.addEventListener("submit", function (event) {
     event.preventDefault();
@@ -12,12 +14,12 @@ export function loadLoginForm() {
       document.getElementById("password") as HTMLInputElement
     ).value;
 
-    // 1. TODO - create a function login(username, password ) that returns true / false in UserModel
+    // 1. TODO - create a function Login(username, password ) that returns true / false in UserModel
     const user = getUsers().find(
       (user) =>
         user.userName === usernameInput && user.password === passwordInput
     );
-    console.log(user)
+
     if (user) {
       console.log("Login successful!");
 

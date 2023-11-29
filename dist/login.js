@@ -1,7 +1,14 @@
 import { loadLoginForm } from "./User.controller.js";
-import { loadUsersFromStorage, setUsers } from "./User.model.js";
+import { loadCurrentUserFromStorage, loadUsersFromStorage, setUsers } from "./User.model.js";
+function openApp() {
+    window.location.href = "index.html";
+}
 function main() {
-    setUsers(loadUsersFromStorage());
-    loadLoginForm();
+    var currentUser = loadCurrentUserFromStorage();
+    if (!currentUser) {
+        setUsers(loadUsersFromStorage());
+        loadLoginForm();
+    }
+    openApp();
 }
 main();
