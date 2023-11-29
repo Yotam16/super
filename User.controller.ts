@@ -15,6 +15,7 @@ export function loadLoginForm() {
 
     if (login(usernameInput, passwordInput)) {
       console.log("Login successful!");
+      saveCurrentUserToStorage(usernameInput);
 
       window.location.href = "index.html";
 

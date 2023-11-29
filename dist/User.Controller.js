@@ -8,6 +8,7 @@ export function loadLoginForm() {
         var passwordInput = document.getElementById("password").value;
         if (login(usernameInput, passwordInput)) {
             console.log("Login successful!");
+            saveCurrentUserToStorage(usernameInput);
             window.location.href = "index.html";
             saveCurrentUserToStorage(usernameInput);
         }
