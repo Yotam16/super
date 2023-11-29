@@ -27,22 +27,32 @@ export function isEmailExists(email) {
 }
 // TODO - Safe login function
 export function login(username, password) {
+    return users.some(function (user) { return user.userName === username && user.password === password; });
 }
 // TODO - a function that loads current user from storage
 export function loadCurrentUserFromStorage() {
-    return {
-        firstName: "Tal",
-        lastName: "Bam",
-        age: 1,
-        gender: "female",
-        email: "TalBam@Super.com",
-        userName: "TalBam",
-        password: "123"
-    };
+    var currentUserName = localStorage.getItem("currentUserName");
+    if (currentUserName) {
+        var user = users.find(function (user) { return user.userName === currentUserName; });
+        if (user) {
+            return {
+                firstName: user.firstName,
+                lastName: user.lastName,
+                age: user.age,
+                gender: user.gender,
+                email: user.email,
+                userName: user.userName,
+                password: user.password
+            };
+        }
+        return undefined;
+    }
 }
 // TODO - a function that saves current user to storage
-export function saveCurrentUserToStorage() {
+export function saveCurrentUserToStorage(username) {
+    localStorage.setItem("currentUserName", username);
 }
 // TODO - a function that deletes current user from storage
 export function deleteCurrentUserFromStorage() {
+    localStorage.removeItem("currentUserName");
 }

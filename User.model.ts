@@ -49,29 +49,39 @@ export function isEmailExists(email: string): boolean {
 }
 
 // TODO - Safe login function
-export function login(username: string, password: string) {
-
+export function login(username: string, password: string): boolean {
+  return users.some(user => user.userName === username && user.password === password);
 }
 
 // TODO - a function that loads current user from storage
-export function loadCurrentUserFromStorage(): User {
-  return {
-    firstName: "Tal",
-    lastName: "Bam",
-    age: 1,
-    gender: "female",
-    email: "TalBam@Super.com",
-    userName: "TalBam",
-    password: "123"
+export function loadCurrentUserFromStorage(): User | undefined {
+  const currentUserName = localStorage.getItem("currentUserName");
+
+  if (currentUserName){
+   const user = users.find(user => user.userName === currentUserName);
+
+  if (user){
+    return {
+      firstName: user.firstName,
+      lastName: user.lastName,
+      age: user.age,
+      gender: user.gender,
+      email: user.email,
+      userName: user.userName,
+      password: user.password
+     }
+  }
+   
+  return undefined;
   }
 }
 
 // TODO - a function that saves current user to storage
-export function saveCurrentUserToStorage() {
-
+export function saveCurrentUserToStorage(username: string): void {
+  localStorage.setItem("currentUserName", username);
 }
 
 // TODO - a function that deletes current user from storage
 export function deleteCurrentUserFromStorage() {
-
+  localStorage.removeItem("currentUserName");
 }
