@@ -1,22 +1,7 @@
-type Gender = "male" | "female";
+import { User, addUser, getUsers, isEmailExists, isUserNameExists } from "./User.model.js";
+import { displayErrorMessage } from "./User.view.js";
 
-type User = {
-  firstName: string;
-  lastName: string;
-  age: number;
-  gender: Gender;
-  email: string;
-  userName: string;
-  password: string;
-};
-
-type Users = User[];
-
-const users: Users = JSON.parse(localStorage.getItem("users") || "[]");
-
-document
-  .getElementById("loginForm")
-  ?.addEventListener("submit", function (event) {
+document.getElementById("loginForm")?.addEventListener("submit", function (event) {
     event.preventDefault();
 
     const usernameInput = (
@@ -26,11 +11,12 @@ document
       document.getElementById("password") as HTMLInputElement
     ).value;
 
-    const user = users.find(
+    // 1. TODO - create a function login(username, password ) that returns true / false in UserModel
+    const user = getUsers().find(
       (user) =>
         user.userName === usernameInput && user.password === passwordInput
     );
-
+        console.log(user)
     if (user) {
       console.log("Login successful!");
 
@@ -40,10 +26,9 @@ document
     }
   });
 
-document
-  .getElementById("signInForm")
-  ?.addEventListener("submit", function (event) {
+  document.getElementById("signInForm")?.addEventListener("submit", function (event) {
     event.preventDefault();
+ 
 
     const firstName = (document.getElementById("firstName") as HTMLInputElement)
       .value;
@@ -53,6 +38,7 @@ document
       (document.getElementById("age") as HTMLInputElement).value,
       10
     );
+
     const gender = (document.getElementById("gender") as HTMLSelectElement)
       .value;
     const email = (document.getElementById("email") as HTMLInputElement).value;
@@ -63,7 +49,7 @@ document
     const passwordVerify = (
       document.getElementById("passwordVerify") as HTMLInputElement
     ).value;
-
+//
     if (password !== passwordVerify) {
       displayErrorMessage("Passwords do not match.");
       return;
@@ -97,27 +83,3 @@ document
 
     window.location.href = "index.html";
   });
-
-function addUser(newUser: User): void {
-  users.push(newUser);
-  updateLocalStorage();
-}
-
-function updateLocalStorage(): void {
-  localStorage.setItem("users", JSON.stringify(users));
-}
-
-function isUserNameExists(username: string): boolean {
-  return users.some((user) => user.userName === username);
-}
-
-function isEmailExists(email: string): boolean {
-  return users.some((user) => user.email === email);
-}
-
-function displayErrorMessage(message: string, color: string = "red"): void {
-  const errorMessage = document.getElementById("errorMessage");
-
-  errorMessage!.textContent = message;
-  errorMessage!.style.color = color;
-}
