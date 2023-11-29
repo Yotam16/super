@@ -11,7 +11,6 @@ export function getUsers() {
 }
 export function setUsers(newUsers) {
     newUsers.forEach(function (user) { return users.push(user); });
-    console.log(users);
 }
 export function addUser(newUser) {
     users.push(newUser);
