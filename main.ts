@@ -22,6 +22,8 @@ function showProductsGrid(products: Product.Product[]) {
     });
 }
 
+
+
 function main() {
 
     console.log("Loading products from file...")

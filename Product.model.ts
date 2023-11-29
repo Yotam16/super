@@ -77,3 +77,33 @@ export async function loadAllProducts(onLoadCallback: OnProductsLoaded) {
         throw new Error("Error reading product list from file:\n" + error);
     }
 }
+
+
+document.getElementById('getProductByIdButton')?.addEventListener('click', () => {
+    try {
+        const userInput = prompt('Enter product ID:');
+        if (userInput !== null && userInput !== undefined) {
+            const productId = parseInt(userInput, 10);
+            const product = getProductbyID(productId);
+            console.log('Product by ID:', product);
+        } else {
+            console.log('User canceled or dismissed the prompt.');
+        }
+    } catch (error) {
+        console.log('error getting product by ID');
+    }
+});
+
+document.getElementById('getProductByNameButton')?.addEventListener('click', () => {
+    try {
+        const productName = prompt('Enter product name:');
+        if (productName !== null && productName !== undefined) {
+            const product = getProductbyName(productName);
+            console.log('Product by Name:', product);
+        } else {
+            console.log('User canceled or dismissed the prompt.');
+        }
+    } catch (error) {
+        console.log('error getting product by name');
+    }
+});

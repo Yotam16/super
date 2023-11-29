@@ -34,6 +34,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var _a, _b;
 export var products = [];
 export var onProductsChangedListeners = [];
 // Add a target who listens to when products is changed
@@ -97,3 +98,34 @@ export function loadAllProducts(onLoadCallback) {
         });
     });
 }
+(_a = document.getElementById('getProductByIdButton')) === null || _a === void 0 ? void 0 : _a.addEventListener('click', function () {
+    try {
+        var userInput = prompt('Enter product ID:');
+        if (userInput !== null && userInput !== undefined) {
+            var productId = parseInt(userInput, 10);
+            var product = getProductbyID(productId);
+            console.log('Product by ID:', product);
+        }
+        else {
+            console.log('User canceled or dismissed the prompt.');
+        }
+    }
+    catch (error) {
+        console.log('error getting product by ID');
+    }
+});
+(_b = document.getElementById('getProductByNameButton')) === null || _b === void 0 ? void 0 : _b.addEventListener('click', function () {
+    try {
+        var productName = prompt('Enter product name:');
+        if (productName !== null && productName !== undefined) {
+            var product = getProductbyName(productName);
+            console.log('Product by Name:', product);
+        }
+        else {
+            console.log('User canceled or dismissed the prompt.');
+        }
+    }
+    catch (error) {
+        console.log('error getting product by name');
+    }
+});
