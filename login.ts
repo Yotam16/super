@@ -1,20 +1,20 @@
 import { loadLoginForm } from "./User.controller.js";
 import { loadCurrentUserFromStorage, loadUsersFromStorage, setUsers } from "./User.model.js";
 
-// function openApp() {
-//     window.location.href = "index.html";
-// }
+function openApp() {
+    window.location.href = "store.html";
+}
 
 function main() {
 
-    const currentUser = loadCurrentUserFromStorage();
-
-    if (!currentUser) {
-        setUsers(loadUsersFromStorage());
+    setUsers(loadUsersFromStorage());
+    try {
+        loadCurrentUserFromStorage();
+        openApp();
+    } catch {
         loadLoginForm();
     }
 
-    // openApp();
 }
 
 main();

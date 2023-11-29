@@ -55,25 +55,16 @@ export function login(username: string, password: string): boolean {
 
 // TODO - a function that loads current user from storage
 export function loadCurrentUserFromStorage(): User | undefined {
-  const currentUserName = localStorage.getItem("currentUserName");
+  const loadedCurrentUser = localStorage.getItem("currentUserName");
+  console.log(loadedCurrentUser)
 
-  if (currentUserName){
-   const user = users.find(user => user.userName === currentUserName);
+  if (!loadedCurrentUser) throw new Error("LoadCurrentUser - no current user in storage")
 
-  if (user){
-    return {
-      firstName: user.firstName,
-      lastName: user.lastName,
-      age: user.age,
-      gender: user.gender,
-      email: user.email,
-      userName: user.userName,
-      password: user.password
-     }
-  }
-   
-  return undefined;
-  }
+  const user = getUsers().find(user => user.userName === loadedCurrentUser);
+
+  if (!user) throw new Error("LoadCurrentUser - current user from storage is not a user in database");
+
+  return user;
 }
 
 // TODO - a function that saves current user to storage

@@ -15,10 +15,12 @@ export function loadLoginForm() {
 
     if (login(usernameInput, passwordInput)) {
       console.log("Login successful!");
+      saveCurrentUserToStorage(usernameInput);
 
-      window.location.href = "index.html";
 
       saveCurrentUserToStorage(usernameInput);
+      window.location.href = "store.html";
+
     } else {
       displayErrorMessage("Invalid username or password. Please try again.");
     }

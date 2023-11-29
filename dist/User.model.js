@@ -31,22 +31,14 @@ export function login(username, password) {
 }
 // TODO - a function that loads current user from storage
 export function loadCurrentUserFromStorage() {
-    var currentUserName = localStorage.getItem("currentUserName");
-    if (currentUserName) {
-        var user = users.find(function (user) { return user.userName === currentUserName; });
-        if (user) {
-            return {
-                firstName: user.firstName,
-                lastName: user.lastName,
-                age: user.age,
-                gender: user.gender,
-                email: user.email,
-                userName: user.userName,
-                password: user.password
-            };
-        }
-        return undefined;
-    }
+    var loadedCurrentUser = localStorage.getItem("currentUserName");
+    console.log(loadedCurrentUser);
+    if (!loadedCurrentUser)
+        throw new Error("LoadCurrentUser - no current user in storage");
+    var user = getUsers().find(function (user) { return user.userName === loadedCurrentUser; });
+    if (!user)
+        throw new Error("LoadCurrentUser - current user from storage is not a user in database");
+    return user;
 }
 // TODO - a function that saves current user to storage
 export function saveCurrentUserToStorage(username) {

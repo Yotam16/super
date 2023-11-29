@@ -8,8 +8,9 @@ export function loadLoginForm() {
         var passwordInput = document.getElementById("password").value;
         if (login(usernameInput, passwordInput)) {
             console.log("Login successful!");
-            window.location.href = "index.html";
             saveCurrentUserToStorage(usernameInput);
+            saveCurrentUserToStorage(usernameInput);
+            window.location.href = "store.html";
         }
         else {
             displayErrorMessage("Invalid username or password. Please try again.");
