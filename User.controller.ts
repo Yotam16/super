@@ -27,13 +27,6 @@ export function loadLoginForm() {
   });
 }
 
-
-// TODO - Add verification functions for inputs
-// TODO - Email verification
-// TODO - Age verification
-// TODO - User verification (must be more than 6 letters, must not be only numbers etc..)
-// TODO - Password verification (must be 6-8 characters, must have capital and special character etc..)
-
 export function loadRegisterForm() {
   document.getElementById("signInForm")?.addEventListener("submit", function (event) {
     event.preventDefault();

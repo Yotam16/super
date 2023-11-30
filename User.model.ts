@@ -1,4 +1,4 @@
-import { Cart, newCart } from "./Cart.model";
+import { Cart, newCart } from "./Cart.model.js";
 
 const STORAGE_USERS = "users";
 const STORAGE_CURRENTUSER = "current_user";
