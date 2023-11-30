@@ -40,9 +40,16 @@ body {
   flex-shrink: 0;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+.navbar__logo {
+  font-size: 2.75rem;
+  color: white;
+  margin-left: 1rem;
 }
 .navbar__actions {
   display: flex;
+  margin-right: 1rem;
 }
 
 .dashboard {
@@ -291,6 +298,32 @@ body {
 #navbar {
   left: 5px;
   top: 5px;
+}
+
+.payed-dialog {
+  top: 25%;
+  left: 25%;
+  width: 50%;
+  aspect-ratio: 2/1;
+  background-color: #D51C4A;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.payed-dialog__text {
+  margin: auto 0;
+  font-size: 2rem;
+}
+.payed-dialog__button {
+  width: 6rem;
+  aspect-ratio: 2/1;
+  border-radius: 6rem;
+  background-color: white;
+  color: #D51C4A;
+  text-align: center;
+  margin-bottom: 2rem;
 }
 
 .navbar__profile img,

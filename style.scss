@@ -12,9 +12,17 @@ body {
     flex-shrink: 0;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+
+    &__logo {
+        font-size: 2.75rem;
+        color: white;
+        margin-left: 1rem
+    }
 
     &__actions {
         display: flex;
+        margin-right: 1rem
     }
 }
 
@@ -61,6 +69,7 @@ body {
         width: 100%;
         aspect-ratio: 1/1;
         padding: 1rem;
+
     }
 
     &__title {
@@ -309,6 +318,34 @@ body {
     top: 5px;
 }
 
+.payed-dialog {
+    top: 25%;
+    left: 25%;
+    width: 50%;
+    aspect-ratio: 2/1;
+
+    background-color: #D51C4A;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    &__text {
+        margin: auto 0;
+        font-size: 2rem;
+    }
+
+    &__button {
+        width: 6rem;
+        aspect-ratio: 2/1;
+        border-radius: 6rem;
+        background-color: white;
+        color: #D51C4A;
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+}
 
 .navbar__profile img,
 .navbar__orders img,

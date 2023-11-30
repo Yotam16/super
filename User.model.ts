@@ -75,6 +75,11 @@ export function addCartToUser(username: Username, cart: Cart) {
   saveUsersToStorage();
 }
 
+export function clearSavedCartOfUser(username: Username) {
+  const user = getUserByUsername(username);
+  user.savedCart = undefined;
+  saveUsersToStorage();
+}
 export function getUserSavedCart(username: Username): Cart {
   const savedCart = getUserByUsername(username).savedCart;
   if (!savedCart) throw new Error(`GetUserSavedCart - ${username} has no saved cart`)
