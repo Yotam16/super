@@ -66,3 +66,4 @@ function main() {
     showCart();
 }
 main();
+console.log("push test");
