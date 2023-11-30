@@ -7,7 +7,7 @@ body {
 }
 
 .navbar {
-    background-color: #d5e4ff;
+    background-color: #002863;
     flex-basis: 4rem;
     flex-shrink: 0;
     display: flex;
@@ -22,23 +22,20 @@ body {
     flex: 10;
     display: flex;
     overflow: hidden;
+    background-color: #F9FCFF;
 }
 
 .main-area {
     flex: 8;
     display: flex;
     flex-direction: column;
-}
-
-.catagory-list {
-    flex: 1;
-    background-color: blue;
+    overflow: hidden;
+    gap: 2rem;
 }
 
 .products-grid {
     flex: 7;
     overflow-y: auto;
-    background-color: yellow;
     display: grid;
     justify-content: center;
     grid-template-columns: repeat(auto-fit, minmax(5rem, 12rem));
@@ -51,7 +48,6 @@ body {
         background-color: white;
     }
 }
-
 
 .cart {
     background-color: red;
@@ -242,6 +238,39 @@ body {
         background-color: red;
     }
 
+}
+
+.category-list {
+    flex: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4rem;
+    padding: 2rem;
+    overflow-x: auto;
+
+    &__category {
+        width: 8rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0.5rem;
+    }
+
+    &__image {
+        width: 6rem;
+        aspect-ratio: 1/1;
+        border-radius: 8rem;
+    }
+
+    &__title {
+        font-size: 1.5rem;
+    }
+
+    &__placeholder {
+        width: 6rem;
+        background-color: red;
+    }
 }
 
 #navbar {

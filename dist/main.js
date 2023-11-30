@@ -26,11 +26,7 @@ function showCurrentUserSavedCart() {
     var currentUser = User.getCurrentUser();
     try {
         var savedCart = User.getUserSavedCart(currentUser.userName);
-        console.log("loaded saved cart of current user:");
-        console.log(savedCart);
         Cart.setCart(savedCart);
-        console.log("current cart");
-        console.log(Cart.getCart());
     }
     catch (_a) {
         Cart.setCart(Cart.newCart(0));

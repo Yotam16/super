@@ -30,12 +30,7 @@ function showCurrentUserSavedCart() {
     const currentUser = User.getCurrentUser()
     try {
         const savedCart = User.getUserSavedCart(currentUser.userName);
-        console.log("loaded saved cart of current user:")
-        console.log(savedCart)
-
         Cart.setCart(savedCart);
-        console.log("current cart")
-        console.log(Cart.getCart())
     } catch {
         Cart.setCart(Cart.newCart(0));
     }
