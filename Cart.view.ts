@@ -5,10 +5,10 @@ const BEM_CART_PEFIX = ".cart__";
 const DATA_PRODUCTID_PEFIX = "data-product-id";
 const cartView = document.querySelector(".cart") as HTMLDivElement;
 const titleView = cartView.querySelector(BEM_CART_PEFIX + "title") as HTMLHeadingElement;
-const saveButtonView = cartView.querySelector(BEM_CART_PEFIX + "button-save") as HTMLButtonElement;
-const emptyButtonView = cartView.querySelector(BEM_CART_PEFIX + "button-empty") as HTMLButtonElement;
+export const saveButtonView = cartView.querySelector(BEM_CART_PEFIX + "button-save") as HTMLButtonElement;
+export const emptyButtonView = cartView.querySelector(BEM_CART_PEFIX + "button-empty") as HTMLButtonElement;
 const totalPriceView = cartView.querySelector(BEM_CART_PEFIX + "total-price") as HTMLSpanElement;
-const payButtonView = cartView.querySelector(BEM_CART_PEFIX + "button-pay") as HTMLButtonElement;
+export const payButtonView = cartView.querySelector(BEM_CART_PEFIX + "button-pay") as HTMLButtonElement;
 
 const cartProductsListView = cartView.querySelector(".cart-list") as HTMLUListElement;
 
@@ -53,7 +53,7 @@ function renderProductView(cartProduct: CartProducts.CartProduct) {
                 <button class="cart-list__button cart-list__action-add" >+</button>
             </form>
             </div>
-            <div class="cart-list__action-remove" > <svg fill="#000000" height = "1rem" width = "1rem"
+            <div class="cart-list__action-remove" ${DATA_PRODUCTID_PEFIX}="${cartProduct.product.PID}"> <svg fill="#000000" height = "1rem" width = "1rem"
     version = "1.1" id = "Capa_1" xmlns = "http://www.w3.org/2000/svg"
     xmlns: xlink = "http://www.w3.org/1999/xlink" viewBox = "0 0 460.775 460.775"
     xml: space = "preserve" >
