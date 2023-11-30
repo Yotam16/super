@@ -53,9 +53,10 @@ body {
   color: white;
   margin-left: 1rem;
 }
-.navbar__actions {
-  display: flex;
-  margin-right: 1rem;
+.navbar__logout {
+  width: 2.5rem;
+  height: 2.5rem;
+  margin-right: 2rem;
 }
 
 .dashboard {
