@@ -280,6 +280,7 @@ body {
     align-items: center;
     gap: 4rem;
     padding: 2rem;
+    overflow-y: hidden;
     overflow-x: scroll;
 
     &__category {
