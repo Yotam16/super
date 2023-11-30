@@ -10,8 +10,8 @@ export var emptyButtonView = cartView.querySelector(BEM_CART_PEFIX + "button-emp
 var totalPriceView = cartView.querySelector(BEM_CART_PEFIX + "total-price");
 export var payButtonView = cartView.querySelector(BEM_CART_PEFIX + "button-pay");
 var cartProductsListView = cartView.querySelector(".cart-list");
-export function showCartView(cart) {
-    setTitle("Vlad's Cart");
+export function showCartView(name, cart) {
+    setTitle(name + "'s Cart");
     setTotalPrice(0);
     updateCartProductsView(cart);
     emptyButtonView.addEventListener("click", onEmptyCartEvent);
