@@ -1,0 +1,36 @@
+@use "reset";
+@use "kit";
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: aquamarine;
+}
+h1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 2rem;
+}
+
+button {
+    background-color: rgb(115, 228, 115);
+    padding: 2px;
+    border-radius: 6px;
+    &:hover{
+        background-color: rgb(26, 220, 26);
+        cursor: pointer;
+    }
+}
+
+.container {
+    box-shadow: rgba(0, 0, 0, 0.60) 0px 5px 15px;
+    border-radius: 12px;
+    height: 20rem;
+    width: 25rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+}

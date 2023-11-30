@@ -1,9 +1,10 @@
 export type Category = "Meat" | "Dairy" | "Vegetables" | "Fruit" | "Bread" | "Hygene" |
-    "Office" | "Clothing" | "Other";
+    "Office" | "Clothing" | "All";
 
+export type ProductId = string;
 export type Product = {
     name: string;
-    PID: number;
+    PID: ProductId;
     cat: Category;
     price: number;
     inStock: boolean;
@@ -12,26 +13,16 @@ export type Product = {
 
 export const products = [] as Product[];
 
-// Create a list of targets who listens when products is changed
-type OnProductChangedListener = (products: Product[]) => void;
-export const onProductsChangedListeners = [] as OnProductChangedListener[];
 
-// Add a target who listens to when products is changed
-export function addOnProductsChangedListener(callback: OnProductChangedListener) {
-    onProductsChangedListeners.push(callback);
-}
-
-// When products is changed, call all targets who listens.
-export function OnProductsChanged(products: Product[]) {
-    console.log("On Products Changed event fired.")
-    onProductsChangedListeners.forEach((listener) => listener(products));
+export function getProductsByCategory(category: Category) {
+    return products.filter((product) => product.cat === category);
 }
 
 export function getProducts(): Product[] {
     return products.slice();
 }
 
-export function getProductbyID(productId: number) {
+export function getProductbyID(productId: string) {
     const product = products.find((product) => product.PID === productId);
 
     if (!product) throw new Error(`getProduct - couldn't find product with id ${productId}`)
@@ -51,7 +42,6 @@ export function setProducts(newProducts: Product[]) {
     clearProducts();
     newProducts.forEach((product) => products.push(product));
 
-    OnProductsChanged(products);
 }
 
 export function clearProducts() {
@@ -63,7 +53,6 @@ export async function loadAllProducts(onLoadCallback: OnProductsLoaded) {
     const filePath = "./product_list.json";
 
     try {
-
         const response = await fetch(filePath);
 
         if (!response.ok) {
@@ -79,31 +68,31 @@ export async function loadAllProducts(onLoadCallback: OnProductsLoaded) {
 }
 
 
-document.getElementById('getProductByIdButton')?.addEventListener('click', () => {
-    try {
-        const userInput = prompt('Enter product ID:');
-        if (userInput !== null && userInput !== undefined) {
-            const productId = parseInt(userInput, 10);
-            const product = getProductbyID(productId);
-            console.log('Product by ID:', product);
-        } else {
-            console.log('User canceled or dismissed the prompt.');
-        }
-    } catch (error) {
-        console.log('error getting product by ID');
-    }
-});
+// document.getElementById('getProductByIdButton')?.addEventListener('click', () => {
+//     try {
+//         const userInput = prompt('Enter product ID:');
+//         if (userInput !== null && userInput !== undefined) {
+//             const productId = parseInt(userInput, 10);
+//             const product = getProductbyID(productId);
+//             console.log('Product by ID:', product);
+//         } else {
+//             console.log('User canceled or dismissed the prompt.');
+//         }
+//     } catch (error) {
+//         console.log('error getting product by ID');
+//     }
+// });
 
-document.getElementById('getProductByNameButton')?.addEventListener('click', () => {
-    try {
-        const productName = prompt('Enter product name:');
-        if (productName !== null && productName !== undefined) {
-            const product = getProductbyName(productName);
-            console.log('Product by Name:', product);
-        } else {
-            console.log('User canceled or dismissed the prompt.');
-        }
-    } catch (error) {
-        console.log('error getting product by name');
-    }
-});
+// document.getElementById('getProductByNameButton')?.addEventListener('click', () => {
+//     try {
+//         const productName = prompt('Enter product name:');
+//         if (productName !== null && productName !== undefined) {
+//             const product = getProductbyName(productName);
+//             console.log('Product by Name:', product);
+//         } else {
+//             console.log('User canceled or dismissed the prompt.');
+//         }
+//     } catch (error) {
+//         console.log('error getting product by name');
+//     }
+// });
