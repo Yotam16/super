@@ -14,23 +14,28 @@
     </header>
     <div class="container">
         <main>
-            
-            <form id="loginForm" name="log-in">
+            <form id="loginForm" name="log-in" class="form">
                 <h3>get in your account</h3>
-                <div class="user-leabel">
+
+                <div class="box-leabel">
                     <label for="userName">user name</label>
                     <input type="text" id="userName">
                 </div>
-                <div class="password-leabel">
+
+                <div class="box-leabel">
                    <label for="password">password</label>
                     <input type="password" id="password">
                 </div>
+
                 <button type="submit">log in</button>
+                
                 <p id="errorMessage"></p>
+
             </form>
             <p>don't have an account? <a href="register.html">register</a></p>
         </main>
     </div>
+
     <script type="module" src="dist/login.js"></script>
 </body>
 

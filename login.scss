@@ -13,11 +13,19 @@ h1 {
     left: 0;
     font-size: 2rem;
 }
+h3 {
+    position: absolute;
+    top: 4%;
+    right: 27%;
+    font-size: 1.3rem;
+}
 
 button {
     background-color: rgb(115, 228, 115);
     padding: 2px;
     border-radius: 6px;
+    text-align: center;
+
     &:hover{
         background-color: rgb(26, 220, 26);
         cursor: pointer;
@@ -33,4 +41,56 @@ button {
     justify-content: center;
     align-items: center;
     background-color: white;
+    position: relative;
 }
+.form  {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.box-leabel{
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
