@@ -35,6 +35,9 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 export var products = [];
+export function getProductsByCategory(category) {
+    return products.filter(function (product) { return product.cat === category; });
+}
 export function getProducts() {
     return products.slice();
 }

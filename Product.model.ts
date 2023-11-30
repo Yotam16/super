@@ -13,6 +13,11 @@ export type Product = {
 
 export const products = [] as Product[];
 
+
+export function getProductsByCategory(category: Category) {
+    return products.filter((product) => product.cat === category);
+}
+
 export function getProducts(): Product[] {
     return products.slice();
 }
