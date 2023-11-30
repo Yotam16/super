@@ -89,6 +89,15 @@ function showCart() {
     });
 }
 
+function loadLogoutButton() {
+    const logoutButtonView = document.querySelector(".navbar__logout") as HTMLImageElement;
+    logoutButtonView.addEventListener("click", (event) => {
+        console.log("logout")
+        User.setSavedCartToUser(User.getCurrentUser().userName, Cart.getCart());
+        User.deleteCurrentUserFromStorage();
+        navigateToLogin();
+    });
+}
 function showCategories() {
     CategoriesView.showCategoriesView();
     CategoriesViewController.addOnCategorySelectedListener((category) => {
@@ -106,6 +115,7 @@ function main() {
     Product.loadAllProducts(onProductsLoaded);
     showCart();
 
+    loadLogoutButton();
 }
 
 main();
