@@ -1,5 +1,5 @@
 export type Category = "Meat" | "Dairy" | "Vegetables" | "Fruit" | "Bread" | "Hygene" |
-    "Office" | "Clothing" | "Other";
+    "Office" | "Clothing" | "All";
 
 export type ProductId = string;
 export type Product = {

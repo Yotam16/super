@@ -53,6 +53,10 @@ function showCart() {
 function showCategories() {
     CategoriesView.showCategoriesView();
     CategoriesViewController.addOnCategorySelectedListener(function (category) {
+        if (category === "All") {
+            showProductsGrid(Product.getProducts());
+            return;
+        }
         showProductsGrid(Product.getProductsByCategory(category));
     });
 }

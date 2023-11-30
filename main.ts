@@ -62,8 +62,12 @@ function showCart() {
 function showCategories() {
     CategoriesView.showCategoriesView();
     CategoriesViewController.addOnCategorySelectedListener((category) => {
+        if (category === "All") {
+            showProductsGrid(Product.getProducts());
+            return;
+        }
         showProductsGrid(Product.getProductsByCategory(category));
-    })
+    });
 }
 
 function main() {

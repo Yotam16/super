@@ -1,5 +1,6 @@
 import { onCategoryPressed } from "./CategoriesView.controller.js";
 var categoriesList = [
+    { name: "All", img_url: "/assets/categories/meat.png" },
     { name: "Meat", img_url: "/assets/categories/meat.png" },
     { name: "Dairy", img_url: "/assets/categories/milk.png" },
     { name: "Vegetables", img_url: "/assets/categories/veggies.png" },
@@ -8,7 +9,6 @@ var categoriesList = [
     { name: "Hygene", img_url: "/assets/categories/cleaning.png" },
     { name: "Office", img_url: "/assets/categories/office.webp" },
     { name: "Clothing", img_url: "/assets/categories/clothes.webp" },
-    { name: "Other", img_url: "" }
 ];
 var DATA_CATEGORY_NAME = "data-category-name";
 var categoriesView = document.querySelector(".category-list");
