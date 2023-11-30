@@ -7,15 +7,15 @@ type CategoryView = {
 }
 
 const categoriesList: CategoryView[] = [
-    { name: "All", img_url: "/assets/categories/all.png" },
-    { name: "Meat", img_url: "/assets/categories/meat.png" },
-    { name: "Dairy", img_url: "/assets/categories/milk.png" },
-    { name: "Vegetables", img_url: "/assets/categories/veggies.png" },
-    { name: "Fruit", img_url: "/assets/categories/veggies.png" },
-    { name: "Bread", img_url: "/assets/categories/bread.png" },
-    { name: "Hygene", img_url: "/assets/categories/cleaning.png" },
-    { name: "Office", img_url: "/assets/categories/office.webp" },
-    { name: "Clothing", img_url: "/assets/categories/clothes.webp" },
+    { name: "All", img_url: "/super/assets/categories/all.png" },
+    { name: "Meat", img_url: "/super/assets/categories/meat.png" },
+    { name: "Dairy", img_url: "/super/assets/categories/milk.png" },
+    { name: "Vegetables", img_url: "/super/assets/categories/veggies.png" },
+    { name: "Fruit", img_url: "/super/assets/categories/veggies.png" },
+    { name: "Bread", img_url: "/super/assets/categories/bread.png" },
+    { name: "Hygene", img_url: "/super/assets/categories/cleaning.png" },
+    { name: "Office", img_url: "/super/assets/categories/office.webp" },
+    { name: "Clothing", img_url: "/super/assets/categories/clothes.webp" },
 ];
 
 const DATA_CATEGORY_NAME = "data-category-name";
