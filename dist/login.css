@@ -35,6 +35,10 @@ a:active {
   --screen-mobile: 750px;
 }
 
+a {
+  text-decoration: underline;
+}
+
 body {
   display: flex;
   flex-direction: column;
@@ -64,7 +68,7 @@ button:hover {
 }
 
 .logo {
-  margin: 6rem auto;
+  margin: 4rem auto;
   display: block;
   text-align: center;
   font-size: 6rem;
