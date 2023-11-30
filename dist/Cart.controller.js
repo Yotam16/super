@@ -14,7 +14,6 @@ export function onCartPay() {
     onCartPayListeners.forEach(function (listener) { return listener(); });
 }
 export function onSaveCartEvent(event) {
-    console.log("save cart fired");
     onCartSave(Cart.getCart());
 }
 export function onEmptyCartEvent(event) {

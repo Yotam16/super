@@ -21,7 +21,6 @@ export function onCartPay() {
 }
 
 export function onSaveCartEvent(event: MouseEvent) {
-    console.log("save cart fired");
     onCartSave(Cart.getCart());
 }
 

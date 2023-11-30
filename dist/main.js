@@ -74,7 +74,6 @@ function showCart() {
 function loadLogoutButton() {
     var logoutButtonView = document.querySelector(".navbar__logout");
     logoutButtonView.addEventListener("click", function (event) {
-        console.log("logout");
         User.setSavedCartToUser(User.getCurrentUser().userName, Cart.getCart());
         User.deleteCurrentUserFromStorage();
         navigateToLogin();
