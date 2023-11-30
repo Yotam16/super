@@ -1,6 +1,11 @@
 @use "reset";
 @use "kit";
 
+
+a {
+    text-decoration: underline;
+}
+
 body {
     display: flex;
     flex-direction: column;
@@ -8,7 +13,6 @@ body {
     align-items: center;
     background-color: #D5E4FF;
 }
-
 
 h3 {
     margin: 1rem auto;
@@ -33,7 +37,7 @@ button {
 
 
 .logo {
-    margin: 6rem auto;
+    margin: 4rem auto;
     display: block;
     text-align: center;
     font-size: 6rem;
