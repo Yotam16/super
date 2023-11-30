@@ -12,7 +12,7 @@ var __assign = (this && this.__assign) || function () {
 var STORAGE_USERS = "users";
 var STORAGE_CURRENTUSER = "current_user";
 var users = [];
-var currentUser = "";
+var currentUser = "InvalidUserName";
 export function getUserByUsername(username) {
     var searchedUser = getUsers().find(function (user) { return user.userName === username; });
     if (!searchedUser)
@@ -37,6 +37,19 @@ export function addUser(newUser) {
     users.push(user);
     saveUsersToStorage();
 }
+export function setSavedCartToUser(username, cart) {
+    var user = getUserByUsername(username);
+    user.savedCart = cart;
+    console.log("saved cart of user");
+    console.log(getUserByUsername(username).savedCart);
+    saveUsersToStorage();
+}
+export function getUserSavedCart(username) {
+    var savedCart = getUserByUsername(username).savedCart;
+    if (!savedCart)
+        throw new Error("GetUserSavedCart - " + username + " has no saved cart");
+    return savedCart;
+}
 export function saveUsersToStorage() {
     localStorage.setItem(STORAGE_USERS, JSON.stringify(users));
 }
@@ -54,6 +67,11 @@ export function login(username, password) {
 }
 export function setCurrentUser(username) {
     currentUser = username;
+}
+export function getCurrentUser() {
+    if (currentUser === "InvalidUserName")
+        throw new Error("getCurrentUser - no current user.");
+    return getUserByUsername(currentUser);
 }
 export function loadCurrentUserFromStorage() {
     var loadedCurrentUser = localStorage.getItem(STORAGE_CURRENTUSER);

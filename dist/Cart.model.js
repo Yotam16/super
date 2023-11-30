@@ -13,11 +13,13 @@ import * as CartProducts from "./CartProducts.js";
 import { getProductbyID } from "./Product.model.js";
 var cart = newCart(0);
 export function newCart(uid) {
-    var cart = { userID: uid, products: CartProducts.empty(), total: 0 };
+    var cart = { products: CartProducts.empty(), total: 0 };
     return cart;
 }
-export function setCart(cart) {
-    cart = __assign({}, cart);
+export function setCart(newCart) {
+    cart.products = newCart.products;
+    cart.total = newCart.total;
+    updateCartTotal();
     onUpdate();
 }
 export function getCart() {

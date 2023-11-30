@@ -3,6 +3,8 @@ import { Cart, newCart } from "./Cart.model";
 const STORAGE_USERS = "users";
 const STORAGE_CURRENTUSER = "current_user";
 
+type InvalidCurrentUser = "InvalidUserName";
+
 type Gender = "male" | "female";
 
 type Username = string;
@@ -22,7 +24,7 @@ export type User = {
 type Users = User[];
 const users: Users = [];
 
-let currentUser: Username = "";
+let currentUser: Username = "InvalidUserName";
 
 
 export function getUserByUsername(username: Username) {
@@ -61,6 +63,21 @@ export function addUser(newUser: Omit<User, "carts" | "savedCart">): void {
   saveUsersToStorage();
 }
 
+export function setSavedCartToUser(username: Username, cart: Cart) {
+  const user = getUserByUsername(username);
+  user.savedCart = cart;
+  console.log("saved cart of user")
+  console.log(getUserByUsername(username).savedCart)
+  saveUsersToStorage();
+}
+
+export function getUserSavedCart(username: Username): Cart {
+  const savedCart = getUserByUsername(username).savedCart;
+  if (!savedCart) throw new Error(`GetUserSavedCart - ${username} has no saved cart`)
+
+  return savedCart;
+}
+
 export function saveUsersToStorage(): void {
   localStorage.setItem(STORAGE_USERS, JSON.stringify(users));
 }
@@ -83,6 +100,11 @@ export function login(username: string, password: string): boolean {
 
 export function setCurrentUser(username: Username) {
   currentUser = username;
+}
+
+export function getCurrentUser() {
+  if (currentUser === "InvalidUserName") throw new Error(`getCurrentUser - no current user.`);
+  return getUserByUsername(currentUser);
 }
 
 export function loadCurrentUserFromStorage(): Username {

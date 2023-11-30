@@ -1,4 +1,15 @@
 import * as Cart from "./Cart.model.js";
+var onCartSaveListeners = [];
+export function addOnCartSaveListener(callback) {
+    onCartSaveListeners.push(callback);
+}
+export function onCartSave(cart) {
+    onCartSaveListeners.forEach(function (listener) { return listener(cart); });
+}
+export function onSaveCartEvent(event) {
+    console.log("save cart fired");
+    onCartSave(Cart.getCart());
+}
 export function onEmptyCartEvent(event) {
     Cart.clearCart();
 }

@@ -1,11 +1,11 @@
-import { onEmptyCartEvent, onPayCartEvent, onProductAddAmount, onProductAmountChanged, onProductAmountUpdate, onProductRemoveEvenet, onProductSbutractAmount } from "./Cart.controller.js";
+import { onEmptyCartEvent, onPayCartEvent, onProductAddAmount, onProductAmountChanged, onProductAmountUpdate, onProductRemoveEvenet, onProductSbutractAmount, onSaveCartEvent } from "./Cart.controller.js";
 import { calculatePriceByProductId } from "./Cart.model.js";
 import * as CartProducts from "./CartProducts.js";
 var BEM_CART_PEFIX = ".cart__";
 var DATA_PRODUCTID_PEFIX = "data-product-id";
 var cartView = document.querySelector(".cart");
 var titleView = cartView.querySelector(BEM_CART_PEFIX + "title");
-export var saveButtonView = cartView.querySelector(BEM_CART_PEFIX + "button-save");
+export var saveCartButtonView = cartView.querySelector(BEM_CART_PEFIX + "button-save");
 export var emptyButtonView = cartView.querySelector(BEM_CART_PEFIX + "button-empty");
 var totalPriceView = cartView.querySelector(BEM_CART_PEFIX + "total-price");
 export var payButtonView = cartView.querySelector(BEM_CART_PEFIX + "button-pay");
@@ -15,6 +15,7 @@ export function showCartView(cart) {
     setTotalPrice(0);
     updateCartProductsView(cart);
     emptyButtonView.addEventListener("click", onEmptyCartEvent);
+    saveCartButtonView.addEventListener("click", onSaveCartEvent);
     payButtonView.addEventListener("click", onPayCartEvent);
 }
 function setTitle(title) {

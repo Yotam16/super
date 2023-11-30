@@ -2,6 +2,20 @@ import * as Cart from "./Cart.model.js";
 import { ProductId } from "./Product.model.js";
 
 
+type OnCartSaveListener = (cart: Cart.Cart) => void;
+const onCartSaveListeners = [] as OnCartSaveListener[];
+export function addOnCartSaveListener(callback: OnCartSaveListener) {
+    onCartSaveListeners.push(callback);
+}
+export function onCartSave(cart: Cart.Cart) {
+    onCartSaveListeners.forEach((listener) => listener(cart));
+}
+
+export function onSaveCartEvent(event: MouseEvent) {
+    console.log("save cart fired");
+    onCartSave(Cart.getCart());
+}
+
 export function onEmptyCartEvent(event: MouseEvent) {
     Cart.clearCart();
 }

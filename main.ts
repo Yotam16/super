@@ -13,16 +13,31 @@ function onProductsLoaded(loadedProducts: Product.Product[]) {
     ProductGridViewController.addOnAddToCartClickedListener((productId) => {
         Cart.addToCartById(productId);
     });
+
+    showCurrentUserSavedCart();
 }
 
 function loadCurrentUser() {
     try {
         User.setUsers(User.loadUsersFromStorage());
-        const loadedCurrentUser = User.loadCurrentUserFromStorage();
-        console.log(loadedCurrentUser);
+        User.setCurrentUser(User.loadCurrentUserFromStorage());
     } catch {
-        console.log("no current user found");
         navigateToLogin();
+    }
+}
+
+function showCurrentUserSavedCart() {
+    const currentUser = User.getCurrentUser()
+    try {
+        const savedCart = User.getUserSavedCart(currentUser.userName);
+        console.log("loaded saved cart of current user:")
+        console.log(savedCart)
+
+        Cart.setCart(savedCart);
+        console.log("current cart")
+        console.log(Cart.getCart())
+    } catch {
+        Cart.setCart(Cart.newCart(0));
     }
 }
 
@@ -30,19 +45,25 @@ function navigateToLogin() {
     window.location.href = "index.html";
 }
 
-function main() {
-
-    loadCurrentUser();
+function showCart() {
+    CartView.showCartView(Cart.getCart());
 
     Cart.addOnCartUpdateListener((cart) => {
         CartView.updateCartProductsView(cart);
     });
 
-    Cart.setCart(Cart.newCart(0));
-    CartView.showCartView(Cart.getCart());
+    CartController.addOnCartSaveListener((cart) => {
+        console.log("saving cart:")
+        console.log(cart);
+        User.setSavedCartToUser(User.getCurrentUser().userName, cart);
+    });
+}
 
+function main() {
 
+    loadCurrentUser();
     Product.loadAllProducts(onProductsLoaded);
+    showCart();
 
 }
 

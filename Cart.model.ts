@@ -3,29 +3,27 @@ import { Product, ProductId, getProductbyID } from "./Product.model.js";
 
 
 export type Cart = {
-
-    userID: number;
     products: CartProducts.CartProducts;
     total: number;
 }
-
 const cart: Cart = newCart(0);
 
 
 export function newCart(uid: number): Cart {
-    const cart: Cart = { userID: uid, products: CartProducts.empty(), total: 0 };
+    const cart: Cart = { products: CartProducts.empty(), total: 0 };
     return cart;
 }
 
-export function setCart(cart: Cart) {
-    cart = { ...cart };
+export function setCart(newCart: Cart) {
+    cart.products = newCart.products;
+    cart.total = newCart.total;
+    updateCartTotal();
     onUpdate();
 }
 
 export function getCart(): Cart {
     return { ...cart };
 }
-
 
 export function updateCartTotal() {
     cart.total = CartProducts.calulateTotalPrice(cart.products);
