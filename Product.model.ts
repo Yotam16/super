@@ -12,16 +12,13 @@ export type Product = {
 
 export const products = [] as Product[];
 
-// Create a list of targets who listens when products is changed
 type OnProductChangedListener = (products: Product[]) => void;
 export const onProductsChangedListeners = [] as OnProductChangedListener[];
 
-// Add a target who listens to when products is changed
 export function addOnProductsChangedListener(callback: OnProductChangedListener) {
     onProductsChangedListeners.push(callback);
 }
 
-// When products is changed, call all targets who listens.
 export function OnProductsChanged(products: Product[]) {
     console.log("On Products Changed event fired.")
     onProductsChangedListeners.forEach((listener) => listener(products));

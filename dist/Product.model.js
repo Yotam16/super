@@ -36,11 +36,9 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 export var products = [];
 export var onProductsChangedListeners = [];
-// Add a target who listens to when products is changed
 export function addOnProductsChangedListener(callback) {
     onProductsChangedListeners.push(callback);
 }
-// When products is changed, call all targets who listens.
 export function OnProductsChanged(products) {
     console.log("On Products Changed event fired.");
     onProductsChangedListeners.forEach(function (listener) { return listener(products); });
