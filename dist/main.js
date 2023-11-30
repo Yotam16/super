@@ -5,10 +5,7 @@ import * as ProductGridViewController from "./ProductGridView.controller.js";
 import * as CartView from "./Cart.view.js";
 function onProductsLoaded(loadedProducts) {
     Product.setProducts(loadedProducts);
-    showProductsGrid(Product.getProducts());
-}
-function showProductsGrid(products) {
-    ProductGridView.renderProductsGridView(products);
+    ProductGridView.renderProductsGridView(loadedProducts);
     ProductGridViewController.addOnAddToCartClickedListener(function (product) {
         Cart.addToCart(product);
     });

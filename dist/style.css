@@ -35,7 +35,7 @@ body {
 }
 
 .navbar {
-  background-color: purple;
+  background-color: #d5e4ff;
   flex-basis: 4rem;
   flex-shrink: 0;
   display: flex;
@@ -85,7 +85,7 @@ body {
   flex-direction: column;
 }
 .cart__header {
-  background-color: aqua;
+  background-color: #d5e4ff;
   flex: 1;
   display: flex;
   justify-content: space-between;

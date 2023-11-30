@@ -9,12 +9,7 @@ import { toArray } from "./CartProducts.js";
 
 function onProductsLoaded(loadedProducts: Product.Product[]) {
     Product.setProducts(loadedProducts);
-    showProductsGrid(Product.getProducts());
-
-}
-
-function showProductsGrid(products: Product.Product[]) {
-    ProductGridView.renderProductsGridView(products);
+    ProductGridView.renderProductsGridView(loadedProducts);
     ProductGridViewController.addOnAddToCartClickedListener((product) => {
         Cart.addToCart(product);
     });
