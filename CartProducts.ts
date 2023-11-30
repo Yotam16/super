@@ -1,6 +1,6 @@
 import { Product, ProductId, getProductbyID } from "./Product.model.js";
 
-
+export type CartProduct = { product: Product, amount: number };
 export type CartProducts = Record<ProductId, number>;
 
 
@@ -55,4 +55,12 @@ export function clear(cartProducts: CartProducts) {
 
 export function getAmount(cartProducts: CartProducts, productToCount: ProductId) {
     return cartProducts[productToCount];
-}   
+}
+
+export function toArray(cartProducts: CartProducts): CartProduct[] {
+    const cartProductsArray = [] as CartProduct[];
+    Object.entries(cartProducts).map((product) => {
+        cartProductsArray.push({ product: getProductbyID(product[0]), amount: product[1] });
+    });
+    return cartProductsArray;
+}

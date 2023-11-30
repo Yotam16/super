@@ -41,3 +41,10 @@ export function clear(cartProducts) {
 export function getAmount(cartProducts, productToCount) {
     return cartProducts[productToCount];
 }
+export function toArray(cartProducts) {
+    var cartProductsArray = [];
+    Object.entries(cartProducts).map(function (product) {
+        cartProductsArray.push({ product: getProductbyID(product[0]), amount: product[1] });
+    });
+    return cartProductsArray;
+}

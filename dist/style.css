@@ -93,8 +93,7 @@ body {
   padding-inline: 0.75rem;
 }
 .cart__title {
-  font-size: 2.5rem;
-  white-space: nowrap;
+  font-size: 2rem;
 }
 .cart__actions {
   display: flex;
@@ -109,7 +108,7 @@ body {
   margin-inline: 1rem;
   background-color: white;
 }
-.cart__list {
+.cart__products {
   background-color: white;
   flex: 9;
   overflow: hidden;
@@ -160,7 +159,8 @@ body {
   display: flex;
 }
 .cart-list__image {
-  flex: 1;
+  width: 100px;
+  aspect-ratio: 1/1;
 }
 .cart-list__body {
   flex: 2;

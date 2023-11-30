@@ -2,6 +2,7 @@ import * as Product from "./Product.model.js";
 import * as Cart from "./Cart.model.js";
 import * as ProductGridView from "./ProductGridView.view.js";
 import * as ProductGridViewController from "./ProductGridView.controller.js";
+import * as CartView from "./Cart.view.js";
 function onProductsLoaded(loadedProducts) {
     console.log(loadedProducts.length + " products loaded.");
     Product.setProducts(loadedProducts);
@@ -31,6 +32,7 @@ function main() {
         Cart.addToCart(products[3]);
         Cart.addToCart(products[3]);
         console.log(Cart.getCart());
+        CartView.showCartView(Cart.getCart());
     });
     Product.loadAllProducts(onProductsLoaded);
 }
