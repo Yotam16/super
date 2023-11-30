@@ -31,5 +31,5 @@ function validateRecievedCategory(categoryToValidate) {
     return foundCategory.name;
 }
 function renderCategory(category) {
-    return "\n        <li class=\"category-list__category\" " + DATA_CATEGORY_NAME + " = \"" + category.name + "\">\n            <img src=\"" + category.img_url + "\n            \" alt=\"\" class=\"category-list__image\">\n            <h4 class=\"category-list__title\">" + category.name + "</h4>\n        </li>\n    ";
+    return "\n        <li class=\"category-list__category\" " + DATA_CATEGORY_NAME + " = \"" + category.name + "\">\n            <img src=\"" + category.img_url + "\" alt=\"\" class=\"category-list__image\">\n            <h4 class=\"category-list__title\">" + category.name + "</h4>\n        </li>\n    ";
 }

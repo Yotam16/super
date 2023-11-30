@@ -51,8 +51,7 @@ function validateRecievedCategory(categoryToValidate: string): Category {
 function renderCategory(category: CategoryView) {
     return `
         <li class="category-list__category" ${DATA_CATEGORY_NAME} = "${category.name}">
-            <img src="${category.img_url}
-            " alt="" class="category-list__image">
+            <img src="${category.img_url}" alt="" class="category-list__image">
             <h4 class="category-list__title">${category.name}</h4>
         </li>
     `;
