@@ -47,6 +47,11 @@ export function addCartToUser(username, cart) {
     user.carts.push(cart);
     saveUsersToStorage();
 }
+export function clearSavedCartOfUser(username) {
+    var user = getUserByUsername(username);
+    user.savedCart = undefined;
+    saveUsersToStorage();
+}
 export function getUserSavedCart(username) {
     var savedCart = getUserByUsername(username).savedCart;
     if (!savedCart)
