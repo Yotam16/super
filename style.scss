@@ -57,8 +57,8 @@ body {
     gap: 0.25rem;
 
     &__img {
-        width: 100%;
         flex: 1;
+        width: 100%;
         aspect-ratio: 1/1;
     }
 
@@ -69,10 +69,11 @@ body {
 
     &__add-button {
         background-color: #D51C4A;
-        padding: 0.75rem;
+        padding: 0.5rem;
         font-weight: bold;
         color: white;
         border-radius: 6rem;
+        margin-bottom: 0.5rem;
     }
 
     &:hover {
@@ -299,11 +300,6 @@ body {
 
     &__title {
         font-size: 1.5rem;
-    }
-
-    &__placeholder {
-        width: 6rem;
-        background-color: red;
     }
 }
 
