@@ -11,8 +11,8 @@ var __assign = (this && this.__assign) || function () {
 };
 import * as CartProducts from "./CartProducts.js";
 import { getProductbyID } from "./Product.model.js";
-var cart = newCart(0);
-export function newCart(uid) {
+var cart = newCart();
+export function newCart() {
     var cart = { products: CartProducts.empty(), total: 0 };
     return cart;
 }
@@ -59,9 +59,11 @@ export function clearCart() {
     updateCartTotal();
     onUpdate();
 }
-// stub
 export function pay() {
-    console.log("Cart pay: " + cart.total);
+    console.log("Cart payed: " + cart.total);
+    var payedCart = getCart();
+    setCart(newCart());
+    return payedCart;
 }
 export var onCartUpdateListener = [];
 export function addOnCartUpdateListener(callback) {

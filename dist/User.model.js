@@ -40,8 +40,11 @@ export function addUser(newUser) {
 export function setSavedCartToUser(username, cart) {
     var user = getUserByUsername(username);
     user.savedCart = cart;
-    console.log("saved cart of user");
-    console.log(getUserByUsername(username).savedCart);
+    saveUsersToStorage();
+}
+export function addCartToUser(username, cart) {
+    var user = getUserByUsername(username);
+    user.carts.push(cart);
     saveUsersToStorage();
 }
 export function getUserSavedCart(username) {

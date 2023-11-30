@@ -6,6 +6,13 @@ export function addOnCartSaveListener(callback) {
 export function onCartSave(cart) {
     onCartSaveListeners.forEach(function (listener) { return listener(cart); });
 }
+var onCartPayListeners = [];
+export function addOnCartPayListener(callback) {
+    onCartPayListeners.push(callback);
+}
+export function onCartPay() {
+    onCartPayListeners.forEach(function (listener) { return listener(); });
+}
 export function onSaveCartEvent(event) {
     console.log("save cart fired");
     onCartSave(Cart.getCart());
@@ -17,7 +24,7 @@ export function onProductRemoveEvenet(productId) {
     Cart.removeFromCartById(productId);
 }
 export function onPayCartEvent(event) {
-    Cart.pay();
+    onCartPay();
 }
 export function onProductAddAmount(amountView) {
     var amount = Number(amountView.value);
