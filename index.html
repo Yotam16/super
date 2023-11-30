@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="dist/forms.css">
+    <link rel="stylesheet" href="dist/login.css">
     <title>login</title>
 </head>
 
@@ -12,22 +12,25 @@
     <header>
         <h1>my supermarket</h1>
     </header>
-    <main>
-        <form id="loginForm" name="log-in">
-            <h3>get in your account</h3>
-            <div>
-                <label for="userName">user name</label>
-                <input type="text" id="userName">
-            </div>
-            <div>
-                <label for="password">password</label>
-                <input type="password" id="password">
-            </div>
-            <button type="submit">log in</button>
-            <p id="errorMessage"></p>
-        </form>
-        <p>don't have an account? <a href="register.html">register</a></p>
-    </main>
+    <div class="container">
+        <main>
+            
+            <form id="loginForm" name="log-in">
+                <h3>get in your account</h3>
+                <div class="user-leabel">
+                    <label for="userName">user name</label>
+                    <input type="text" id="userName">
+                </div>
+                <div class="password-leabel">
+                   <label for="password">password</label>
+                    <input type="password" id="password">
+                </div>
+                <button type="submit">log in</button>
+                <p id="errorMessage"></p>
+            </form>
+            <p>don't have an account? <a href="register.html">register</a></p>
+        </main>
+    </div>
     <script type="module" src="dist/login.js"></script>
 </body>
 
