@@ -61,7 +61,6 @@ function showCart() {
     CartController.addOnCartPayListener(() => {
         const payedCart = Cart.pay();
         User.addCartToUser(User.getCurrentUser().userName, payedCart);
-        console.log(`user ${User.getCurrentUser()} payed ${payedCart.total}`);
     });
 }
 

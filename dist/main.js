@@ -52,7 +52,6 @@ function showCart() {
     CartController.addOnCartPayListener(function () {
         var payedCart = Cart.pay();
         User.addCartToUser(User.getCurrentUser().userName, payedCart);
-        console.log("user " + User.getCurrentUser() + " payed " + payedCart.total);
     });
 }
 function showCategories() {

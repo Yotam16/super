@@ -60,7 +60,6 @@ export function clearCart() {
     onUpdate();
 }
 export function pay() {
-    console.log("Cart payed: " + cart.total);
     var payedCart = getCart();
     setCart(newCart());
     return payedCart;
