@@ -1,5 +1,5 @@
 import * as CartProducts from "./CartProducts.js";
-import { Product } from "./Product.model.js";
+import { Product, ProductId, getProductbyID } from "./Product.model.js";
 
 
 export type Cart = {
@@ -26,33 +26,49 @@ export function getCart(): Cart {
     return { ...cart };
 }
 
-export function addToCart(product: Product, amount: number = 1) {
-    CartProducts.add(getCart().products, product.PID, amount);
-    updateCartTotal();
-    onUpdate();
-}
 
 export function updateCartTotal() {
     cart.total = CartProducts.calulateTotalPrice(cart.products);
 }
 
-export function subtractFromCart(product: Product, amount: number = 1) {
-    CartProducts.subtract(getCart().products, product.PID, amount);
+export function addToCartById(productId: ProductId, amount: number = 1) {
+    CartProducts.add(getCart().products, productId, amount);
     updateCartTotal();
     onUpdate();
 }
 
-export function removeFromCart(product: Product) {
-    CartProducts.remove(getCart().products, product.PID);
+export function subtractFromCartById(productId: ProductId, amount: number = 1) {
+    CartProducts.subtract(getCart().products, productId, amount);
     updateCartTotal();
     onUpdate();
 }
 
+export function removeFromCartById(productId: ProductId) {
+    CartProducts.remove(getCart().products, productId);
+    updateCartTotal();
+    onUpdate();
+}
+
+export function setProductAmountById(productId: ProductId, amount: number) {
+    CartProducts.setAmount(getCart().products, productId, amount);
+    updateCartTotal();
+    onUpdate();
+}
+
+export function calculatePriceByProductId(productId: ProductId) {
+    const product = getProductbyID(productId);
+    return CartProducts.calculateSingleProduct(getCart().products, product.PID, product.price);
+}
 
 export function clearCart() {
     CartProducts.clear(getCart().products);
     updateCartTotal();
     onUpdate();
+}
+
+// stub
+export function pay() {
+    console.log("Cart pay: " + cart.total)
 }
 
 type OnCartUpdateListener = (cart: Cart) => void;

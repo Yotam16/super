@@ -1,4 +1,5 @@
-import { Cart } from "./Cart.model.js";
+import { onEmptyCartEvent, onPayCartEvent, onProductAddAmount, onProductAmountChanged, onProductAmountUpdate, onProductRemoveEvenet, onProductSbutractAmount } from "./Cart.controller.js";
+import { Cart, calculatePriceByProductId } from "./Cart.model.js";
 import * as CartProducts from "./CartProducts.js";
 
 const BEM_CART_PEFIX = ".cart__";
@@ -13,12 +14,13 @@ export const payButtonView = cartView.querySelector(BEM_CART_PEFIX + "button-pay
 const cartProductsListView = cartView.querySelector(".cart-list") as HTMLUListElement;
 
 export function showCartView(cart: Cart) {
-    console.log(cart.total)
     setTitle("Vlad's Cart");
+    setTotalPrice(0);
 
-    renderCartProductsView(cart.products);
+    updateCartProductsView(cart);
 
-    setTotalPrice(cart.total);
+    emptyButtonView.addEventListener("click", onEmptyCartEvent);
+    payButtonView.addEventListener("click", onPayCartEvent)
 }
 
 function setTitle(title: string) {
@@ -29,12 +31,54 @@ function setTotalPrice(price: number) {
     totalPriceView.innerText = price.toFixed(2).toString();
 }
 
+export function updateCartProductsView(cart: Cart) {
+    renderCartProductsView(cart.products);
+    setTotalPrice(cart.total);
+}
+
 function renderCartProductsView(cartProducts: CartProducts.CartProducts) {
     const products = CartProducts.toArray(cartProducts);
 
     cartProductsListView.innerHTML = `
         ${products.map(renderProductView).join("\n")}
-    `
+    `;
+
+    const productActions = cartProductsListView.querySelectorAll(".cart-list__actions");
+    productActions.forEach((productActionsView) => {
+
+        const targetProduct = productActionsView.getAttribute(DATA_PRODUCTID_PEFIX);
+
+        if (!targetProduct) throw new Error("CartProductsRender - Couldnt find product id in product actions");
+
+        const amountView = productActionsView.querySelector(".cart-list__input-amount") as HTMLInputElement;
+        const addAmountView = productActionsView.querySelector(".cart-list__action-add") as HTMLButtonElement;
+        const subtractAmountView = productActionsView.querySelector(".cart-list__button-subtract") as HTMLButtonElement;
+        const updateAmountView = productActionsView.querySelector(".cart-list__action-update") as HTMLButtonElement;
+
+        amountView.addEventListener("change", onProductAmountChanged);
+
+        addAmountView.addEventListener("click", (event) => {
+            onProductAddAmount(amountView);
+        });
+
+        subtractAmountView.addEventListener("click", (event) => {
+            onProductSbutractAmount(amountView);
+        });
+
+        updateAmountView.addEventListener("click", (event) => {
+            onProductAmountUpdate(targetProduct, Number(amountView.value))
+        })
+    });
+
+    const productRemoveButtons = cartProductsListView.querySelectorAll(".cart-list__action-remove");
+    productRemoveButtons.forEach((removeProductView) => {
+        const targetProduct = removeProductView.getAttribute(DATA_PRODUCTID_PEFIX);
+        if (!targetProduct) throw new Error("CartProductsRender - Couldnt find product id for remove button");
+
+        removeProductView.addEventListener("click", (event) => {
+            onProductRemoveEvenet(targetProduct);
+        });
+    });
 }
 
 function renderProductView(cartProduct: CartProducts.CartProduct) {
@@ -44,14 +88,14 @@ function renderProductView(cartProduct: CartProducts.CartProduct) {
             alt="" class="cart-list__image">
         <div class="cart-list__body">
             <div class="cart-list__name">${cartProduct.product.name}</div>
-            <div class="cart-list__price">${cartProduct.product.price}$</div>
+            <div class="cart-list__price">${calculatePriceByProductId(cartProduct.product.PID).toFixed(2)}$</div>
             <div class="cart-list__quantity"><span>Amount: </span>${cartProduct.amount}</div>
-            <form class="cart-list__actions" ${DATA_PRODUCTID_PEFIX}="${cartProduct.product.PID}">
+            <div class="cart-list__actions" ${DATA_PRODUCTID_PEFIX}="${cartProduct.product.PID}">
                 <button class="cart-list__button cart-list__action-update" > Update </button>
-                <button class="cart-list__button cart-list__button-subtract" > -</button>
-                <input type = "number" name = "cart-list__amount" id ="product-amount-123" class="cart-list__input-amount" >
+                <button class="cart-list__button cart-list__button-subtract" >-</button>
+                <input type= "number" name ="cart-list__amount" class="cart-list__input-amount" value=${cartProduct.amount} min="0">
                 <button class="cart-list__button cart-list__action-add" >+</button>
-            </form>
+            </div>
             </div>
             <div class="cart-list__action-remove" ${DATA_PRODUCTID_PEFIX}="${cartProduct.product.PID}"> <svg fill="#000000" height = "1rem" width = "1rem"
     version = "1.1" id = "Capa_1" xmlns = "http://www.w3.org/2000/svg"
@@ -67,6 +111,6 @@ function renderProductView(cartProduct: CartProducts.CartProduct) {
         < /svg>
         < /div>
         < /li>
-            `
+            `;
 }
 

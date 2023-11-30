@@ -2,6 +2,9 @@ import { getProductbyID } from "./Product.model.js";
 export function empty() {
     return {};
 }
+export function calculateSingleProduct(cartProducts, productId, productPrice) {
+    return cartProducts[productId] * productPrice;
+}
 export function calulateTotalPrice(cartProducts) {
     var totalPrice = 0;
     for (var productId in cartProducts) {
@@ -29,6 +32,15 @@ export function subtract(cartProducts, productToSubtract, amount) {
         return;
     }
     cartProducts[productToSubtract] -= amount;
+}
+export function setAmount(cartProducts, productToSet, amount) {
+    if (amount < 0)
+        throw new Error("CartProducts - can't set a product " + productToSet + " amount below zero");
+    if (amount === 0) {
+        remove(cartProducts, productToSet);
+        return;
+    }
+    cartProducts[productToSet] = amount;
 }
 export function remove(cartProducts, productToRemove) {
     delete cartProducts[productToRemove];

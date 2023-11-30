@@ -8,6 +8,10 @@ export function empty(): Record<string, number> {
     return {};
 }
 
+export function calculateSingleProduct(cartProducts: CartProducts, productId: ProductId, productPrice: number) {
+    return cartProducts[productId] * productPrice;
+}
+
 export function calulateTotalPrice(cartProducts: CartProducts) {
     let totalPrice = 0;
 
@@ -41,6 +45,15 @@ export function subtract(cartProducts: CartProducts, productToSubtract: ProductI
     }
 
     cartProducts[productToSubtract] -= amount;
+}
+
+export function setAmount(cartProducts: CartProducts, productToSet: ProductId, amount: number) {
+    if (amount < 0) throw new Error(`CartProducts - can't set a product ${productToSet} amount below zero`);
+    if (amount === 0) {
+        remove(cartProducts, productToSet);
+        return;
+    }
+    cartProducts[productToSet] = amount;
 }
 
 export function remove(cartProducts: CartProducts, productToRemove: ProductId) {

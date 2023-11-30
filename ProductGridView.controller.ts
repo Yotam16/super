@@ -1,6 +1,6 @@
 import { Product, ProductId, getProductbyID } from "./Product.model.js";
 
-type AddToCartClickedListener = (product: Product) => void;
+type AddToCartClickedListener = (productId: ProductId) => void;
 const onAddToCartClickedListeners = [] as AddToCartClickedListener[];
 
 export function attachAddToCartEvent(buttons: NodeListOf<HTMLButtonElement>) {
@@ -15,10 +15,7 @@ export function attachAddToCartEvent(buttons: NodeListOf<HTMLButtonElement>) {
 }
 
 export function onAddToCartClickedEvent(productId: ProductId) {
-    const product = getProductbyID(productId);
-    console.log("adding product to cart")
-    console.log(product)
-    onAddToCartClickedListeners.forEach((listener) => listener(product));
+    onAddToCartClickedListeners.forEach((listener) => listener(productId));
 }
 
 export function addOnAddToCartClickedListener(callback: AddToCartClickedListener) {

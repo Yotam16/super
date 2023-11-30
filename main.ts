@@ -9,19 +9,21 @@ import * as CartController from "./Cart.controller.js";
 function onProductsLoaded(loadedProducts: Product.Product[]) {
     Product.setProducts(loadedProducts);
     ProductGridView.renderProductsGridView(loadedProducts);
-    ProductGridViewController.addOnAddToCartClickedListener((product) => {
-        Cart.addToCart(product);
+    ProductGridViewController.addOnAddToCartClickedListener((productId) => {
+        Cart.addToCartById(productId);
     });
 }
+
 
 function main() {
 
     Cart.addOnCartUpdateListener((cart) => {
-        CartView.showCartView(cart);
+        CartView.updateCartProductsView(cart);
     });
 
     Cart.setCart(Cart.newCart(0));
-    CartController.attachEmptyCartEvent();
+    CartView.showCartView(Cart.getCart());
+
 
     Product.loadAllProducts(onProductsLoaded);
 

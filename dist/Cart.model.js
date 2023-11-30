@@ -10,6 +10,7 @@ var __assign = (this && this.__assign) || function () {
     return __assign.apply(this, arguments);
 };
 import * as CartProducts from "./CartProducts.js";
+import { getProductbyID } from "./Product.model.js";
 var cart = newCart(0);
 export function newCart(uid) {
     var cart = { userID: uid, products: CartProducts.empty(), total: 0 };
@@ -22,30 +23,43 @@ export function setCart(cart) {
 export function getCart() {
     return __assign({}, cart);
 }
-export function addToCart(product, amount) {
-    if (amount === void 0) { amount = 1; }
-    CartProducts.add(getCart().products, product.PID, amount);
-    updateCartTotal();
-    onUpdate();
-}
 export function updateCartTotal() {
     cart.total = CartProducts.calulateTotalPrice(cart.products);
 }
-export function subtractFromCart(product, amount) {
+export function addToCartById(productId, amount) {
     if (amount === void 0) { amount = 1; }
-    CartProducts.subtract(getCart().products, product.PID, amount);
+    CartProducts.add(getCart().products, productId, amount);
     updateCartTotal();
     onUpdate();
 }
-export function removeFromCart(product) {
-    CartProducts.remove(getCart().products, product.PID);
+export function subtractFromCartById(productId, amount) {
+    if (amount === void 0) { amount = 1; }
+    CartProducts.subtract(getCart().products, productId, amount);
     updateCartTotal();
     onUpdate();
+}
+export function removeFromCartById(productId) {
+    CartProducts.remove(getCart().products, productId);
+    updateCartTotal();
+    onUpdate();
+}
+export function setProductAmountById(productId, amount) {
+    CartProducts.setAmount(getCart().products, productId, amount);
+    updateCartTotal();
+    onUpdate();
+}
+export function calculatePriceByProductId(productId) {
+    var product = getProductbyID(productId);
+    return CartProducts.calculateSingleProduct(getCart().products, product.PID, product.price);
 }
 export function clearCart() {
     CartProducts.clear(getCart().products);
     updateCartTotal();
     onUpdate();
+}
+// stub
+export function pay() {
+    console.log("Cart pay: " + cart.total);
 }
 export var onCartUpdateListener = [];
 export function addOnCartUpdateListener(callback) {

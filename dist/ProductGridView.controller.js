@@ -1,4 +1,3 @@
-import { getProductbyID } from "./Product.model.js";
 var onAddToCartClickedListeners = [];
 export function attachAddToCartEvent(buttons) {
     buttons.forEach(function (buttons) { return buttons.addEventListener("click", function (event) {
@@ -10,10 +9,7 @@ export function attachAddToCartEvent(buttons) {
     }); });
 }
 export function onAddToCartClickedEvent(productId) {
-    var product = getProductbyID(productId);
-    console.log("adding product to cart");
-    console.log(product);
-    onAddToCartClickedListeners.forEach(function (listener) { return listener(product); });
+    onAddToCartClickedListeners.forEach(function (listener) { return listener(productId); });
 }
 export function addOnAddToCartClickedListener(callback) {
     onAddToCartClickedListeners.push(callback);
