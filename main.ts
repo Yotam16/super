@@ -79,5 +79,3 @@ function main() {
 }
 
 main();
-
-console.log("push test")
