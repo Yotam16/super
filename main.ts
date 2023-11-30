@@ -32,7 +32,7 @@ function showCurrentUserSavedCart() {
         const savedCart = User.getUserSavedCart(currentUser.userName);
         Cart.setCart(savedCart);
     } catch {
-        Cart.setCart(Cart.newCart(0));
+        Cart.setCart(Cart.newCart());
     }
 }
 
@@ -56,6 +56,11 @@ function showCart() {
 
     CartController.addOnCartSaveListener((cart) => {
         User.setSavedCartToUser(User.getCurrentUser().userName, cart);
+    });
+
+    CartController.addOnCartPayListener(() => {
+        const payedCart = Cart.pay();
+        User.addCartToUser(User.getCurrentUser().userName, payedCart);
     });
 }
 

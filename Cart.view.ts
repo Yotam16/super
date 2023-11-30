@@ -21,7 +21,7 @@ export function showCartView(name: string, cart: Cart) {
 
     emptyButtonView.addEventListener("click", onEmptyCartEvent);
     saveCartButtonView.addEventListener("click", onSaveCartEvent);
-    payButtonView.addEventListener("click", onPayCartEvent)
+    payButtonView.addEventListener("click", onPayCartEvent);
 }
 
 function setTitle(title: string) {
@@ -68,7 +68,7 @@ function renderCartProductsView(cartProducts: CartProducts.CartProducts) {
 
         updateAmountView.addEventListener("click", (event) => {
             onProductAmountUpdate(targetProduct, Number(amountView.value))
-        })
+        });
     });
 
     const productRemoveButtons = cartProductsListView.querySelectorAll(".cart-list__action-remove");

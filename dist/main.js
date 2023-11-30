@@ -29,7 +29,7 @@ function showCurrentUserSavedCart() {
         Cart.setCart(savedCart);
     }
     catch (_a) {
-        Cart.setCart(Cart.newCart(0));
+        Cart.setCart(Cart.newCart());
     }
 }
 function navigateToLogin() {
@@ -48,6 +48,10 @@ function showCart() {
     });
     CartController.addOnCartSaveListener(function (cart) {
         User.setSavedCartToUser(User.getCurrentUser().userName, cart);
+    });
+    CartController.addOnCartPayListener(function () {
+        var payedCart = Cart.pay();
+        User.addCartToUser(User.getCurrentUser().userName, payedCart);
     });
 }
 function showCategories() {

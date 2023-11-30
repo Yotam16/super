@@ -11,6 +11,15 @@ export function onCartSave(cart: Cart.Cart) {
     onCartSaveListeners.forEach((listener) => listener(cart));
 }
 
+type OnCartPayListener = () => void;
+const onCartPayListeners = [] as OnCartPayListener[];
+export function addOnCartPayListener(callback: OnCartPayListener) {
+    onCartPayListeners.push(callback);
+}
+export function onCartPay() {
+    onCartPayListeners.forEach((listener) => listener());
+}
+
 export function onSaveCartEvent(event: MouseEvent) {
     console.log("save cart fired");
     onCartSave(Cart.getCart());
@@ -25,7 +34,7 @@ export function onProductRemoveEvenet(productId: ProductId) {
 }
 
 export function onPayCartEvent(event: MouseEvent) {
-    Cart.pay();
+    onCartPay();
 }
 
 export function onProductAddAmount(amountView: HTMLInputElement) {

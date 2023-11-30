@@ -1,15 +1,16 @@
 import * as CartProducts from "./CartProducts.js";
 import { Product, ProductId, getProductbyID } from "./Product.model.js";
+import { addCartToUser } from "./User.model.js";
 
 
 export type Cart = {
     products: CartProducts.CartProducts;
     total: number;
 }
-const cart: Cart = newCart(0);
+const cart: Cart = newCart();
 
 
-export function newCart(uid: number): Cart {
+export function newCart(): Cart {
     const cart: Cart = { products: CartProducts.empty(), total: 0 };
     return cart;
 }
@@ -64,9 +65,11 @@ export function clearCart() {
     onUpdate();
 }
 
-// stub
-export function pay() {
-    console.log("Cart pay: " + cart.total)
+export function pay(): Cart {
+    const payedCart = getCart();
+    setCart(newCart());
+
+    return payedCart;
 }
 
 type OnCartUpdateListener = (cart: Cart) => void;

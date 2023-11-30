@@ -66,8 +66,12 @@ export function addUser(newUser: Omit<User, "carts" | "savedCart">): void {
 export function setSavedCartToUser(username: Username, cart: Cart) {
   const user = getUserByUsername(username);
   user.savedCart = cart;
-  console.log("saved cart of user")
-  console.log(getUserByUsername(username).savedCart)
+  saveUsersToStorage();
+}
+
+export function addCartToUser(username: Username, cart: Cart) {
+  const user = getUserByUsername(username);
+  user.carts.push(cart);
   saveUsersToStorage();
 }
 
