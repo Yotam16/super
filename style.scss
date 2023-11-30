@@ -334,14 +334,13 @@ body {
     overflow: hidden;
 
     &__text {
-        margin: auto 0;
         font-size: 2rem;
         text-align: center;
     }
 
     &__button {
-        width: 6rem;
-        aspect-ratio: 2/1;
+        width: 8rem;
+        aspect-ratio: 3/1;
         border-radius: 6rem;
         background-color: white;
         color: #D51C4A;
@@ -359,38 +358,3 @@ body {
     height: 25px;
 }
 
-
-
-button {
-    border: 1px solid black;
-    border-radius: 5px;
-    background-color: gray;
-    color: black;
-    transition: background-color 0.3s;
-}
-
-button:hover {
-    background-color: darkgray;
-}
-
-button:active {
-    transform: scale(1.05);
-}
-
-input,
-select {
-    display: inline-block;
-    background-color: lightgray;
-}
-
-label {
-    display: inline-block;
-    width: 130px;
-    text-align: right;
-}
-
-input {
-    display: inline-block;
-    width: 170px;
-    box-sizing: border-box;
-}
