@@ -7,7 +7,7 @@ type CategoryView = {
 }
 
 const categoriesList: CategoryView[] = [
-    { name: "All", img_url: "/assets/categories/meat.png" },
+    { name: "All", img_url: "/assets/categories/all.png" },
     { name: "Meat", img_url: "/assets/categories/meat.png" },
     { name: "Dairy", img_url: "/assets/categories/milk.png" },
     { name: "Vegetables", img_url: "/assets/categories/veggies.png" },
