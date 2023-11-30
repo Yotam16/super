@@ -1,6 +1,7 @@
 import { Cart, newCart } from "./Cart.model";
 
 const STORAGE_USERS = "users";
+const STORAGE_CURRENTUSER = "current_user";
 
 type Gender = "male" | "female";
 
@@ -85,7 +86,7 @@ export function setCurrentUser(username: Username) {
 }
 
 export function loadCurrentUserFromStorage(): Username {
-  const loadedCurrentUser = localStorage.getItem("currentUserName");
+  const loadedCurrentUser = localStorage.getItem(STORAGE_CURRENTUSER);
 
   if (!loadedCurrentUser) throw new Error("LoadCurrentUser - no current user in storage")
 
@@ -97,9 +98,9 @@ export function loadCurrentUserFromStorage(): Username {
 }
 
 export function saveCurrentUserToStorage(username: string): void {
-  localStorage.setItem("currentUserName", username);
+  localStorage.setItem(STORAGE_CURRENTUSER, username);
 }
 
 export function deleteCurrentUserFromStorage() {
-  localStorage.removeItem("currentUserName");
+  localStorage.removeItem(STORAGE_CURRENTUSER);
 }
