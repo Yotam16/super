@@ -25,6 +25,12 @@ button {
   all: unset;
 }
 
+a,
+a:visited,
+a:active {
+  all: unset;
+}
+
 :root {
   --screen-mobile: 750px;
 }
