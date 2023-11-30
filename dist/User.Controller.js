@@ -58,6 +58,8 @@ export function loadRegisterForm() {
             email: email,
             userName: userName,
             password: password,
+            carts: [],
+            savedCart: undefined
         };
         addUser(newUser);
         window.location.href = "index.html";

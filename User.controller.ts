@@ -1,3 +1,4 @@
+import { Cart } from "./Cart.model.js";
 import { User, addUser, getUsers, isEmailExists, isUserNameExists, login, saveCurrentUserToStorage } from "./User.model.js";
 import { displayErrorMessage } from "./User.view.js";
 
@@ -79,6 +80,8 @@ export function loadRegisterForm() {
       email,
       userName,
       password,
+      carts: [] as Cart[],
+      savedCart: undefined
     };
 
     addUser(newUser);
