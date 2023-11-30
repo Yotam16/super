@@ -40,9 +40,16 @@ body {
   flex-shrink: 0;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+.navbar__logo {
+  font-size: 2.75rem;
+  color: white;
+  margin-left: 1rem;
 }
 .navbar__actions {
   display: flex;
+  margin-right: 1rem;
 }
 
 .dashboard {
@@ -169,7 +176,7 @@ body {
   flex-direction: column;
   gap: 1rem;
   padding: 2rem;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 .cart-list__item {
   border: solid 2px #D51C4A;
@@ -293,6 +300,35 @@ body {
   top: 5px;
 }
 
+.payed-dialog {
+  margin: auto auto;
+  width: 25rem;
+  aspect-ratio: 2/1;
+  background-color: #D51C4A;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  padding: 1rem;
+  overflow: hidden;
+}
+.payed-dialog__text {
+  margin: auto 0;
+  font-size: 2rem;
+  text-align: center;
+}
+.payed-dialog__button {
+  width: 6rem;
+  aspect-ratio: 2/1;
+  border-radius: 6rem;
+  background-color: white;
+  color: #D51C4A;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
 .navbar__profile img,
 .navbar__orders img,
 .navbar__cart img,
@@ -318,7 +354,8 @@ body {
   transform: scale(1.05);
 }
 
-input, select {
+input,
+select {
   display: inline-block;
   background-color: lightgray;
 }

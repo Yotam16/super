@@ -54,6 +54,9 @@ export function calculatePriceByProductId(productId) {
     var product = getProductbyID(productId);
     return CartProducts.calculateSingleProduct(getCart().products, product.PID, product.price);
 }
+export function isCartEmpty() {
+    return CartProducts.isEmpty(cart.products);
+}
 export function clearCart() {
     CartProducts.clear(getCart().products);
     updateCartTotal();

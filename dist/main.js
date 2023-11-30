@@ -41,6 +41,18 @@ function showProductsGrid(products) {
         Cart.addToCartById(productId);
     });
 }
+function showPayedDialog(payedCart) {
+    var payDialog = document.createElement("dialog");
+    payDialog.classList.add("payed-dialog");
+    payDialog.innerHTML = "\n        <h2 class=\"payed-dialog__text\">Thanks, " + User.getCurrentUser().firstName + " for paying " + payedCart.total + "$</h2>\n        <form method=\"dialog\" class=\"payed-dialog__actions\">\n            <button class=\"payed-dialog__button\">OK</button>\n        </form>\n";
+    var dialogOkButton = payDialog.querySelector(".payed-dialog__button");
+    dialogOkButton.addEventListener("click", function (event) {
+        payDialog.close();
+        payDialog.remove();
+    });
+    document.body.append(payDialog);
+    payDialog.showModal();
+}
 function showCart() {
     CartView.showCartView(User.getCurrentUser().firstName, Cart.getCart());
     Cart.addOnCartUpdateListener(function (cart) {
@@ -50,8 +62,13 @@ function showCart() {
         User.setSavedCartToUser(User.getCurrentUser().userName, cart);
     });
     CartController.addOnCartPayListener(function () {
+        if (Cart.isCartEmpty())
+            return;
         var payedCart = Cart.pay();
-        User.addCartToUser(User.getCurrentUser().userName, payedCart);
+        var currentUsername = User.getCurrentUser().userName;
+        User.addCartToUser(currentUsername, payedCart);
+        User.clearSavedCartOfUser(currentUsername);
+        showPayedDialog(payedCart);
     });
 }
 function showCategories() {

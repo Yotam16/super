@@ -47,6 +47,26 @@ function showProductsGrid(products: Product.Product[]) {
     });
 }
 
+function showPayedDialog(payedCart: Cart.Cart) {
+    const payDialog = document.createElement("dialog");
+    payDialog.classList.add("payed-dialog");
+    payDialog.innerHTML = `
+        <h2 class="payed-dialog__text">Thanks, ${User.getCurrentUser().firstName} for paying ${payedCart.total}$</h2>
+        <form method="dialog" class="payed-dialog__actions">
+            <button class="payed-dialog__button">OK</button>
+        </form>
+`;
+    const dialogOkButton = payDialog.querySelector(".payed-dialog__button") as HTMLButtonElement;
+    dialogOkButton.addEventListener("click", (event) => {
+
+        payDialog.close();
+        payDialog.remove();
+
+    })
+    document.body.append(payDialog);
+    payDialog.showModal();
+}
+
 function showCart() {
     CartView.showCartView(User.getCurrentUser().firstName, Cart.getCart());
 
@@ -59,8 +79,13 @@ function showCart() {
     });
 
     CartController.addOnCartPayListener(() => {
+        if (Cart.isCartEmpty()) return;
+
         const payedCart = Cart.pay();
-        User.addCartToUser(User.getCurrentUser().userName, payedCart);
+        const currentUsername = User.getCurrentUser().userName;
+        User.addCartToUser(currentUsername, payedCart);
+        User.clearSavedCartOfUser(currentUsername);
+        showPayedDialog(payedCart);
     });
 }
 
