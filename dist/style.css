@@ -176,7 +176,7 @@ body {
   flex-direction: column;
   gap: 1rem;
   padding: 2rem;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 .cart-list__item {
   border: solid 2px #D51C4A;
@@ -301,9 +301,8 @@ body {
 }
 
 .payed-dialog {
-  top: 25%;
-  left: 25%;
-  width: 50%;
+  margin: auto auto;
+  width: 25rem;
   aspect-ratio: 2/1;
   background-color: #D51C4A;
   color: white;
@@ -311,14 +310,17 @@ body {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  gap: 2rem;
+  padding: 1rem;
+  overflow: hidden;
 }
 .payed-dialog__text {
-  margin: auto 0;
   font-size: 2rem;
+  text-align: center;
 }
 .payed-dialog__button {
-  width: 6rem;
-  aspect-ratio: 2/1;
+  width: 8rem;
+  aspect-ratio: 3/1;
   border-radius: 6rem;
   background-color: white;
   color: #D51C4A;
@@ -333,37 +335,4 @@ body {
 .navbar__idsearch img {
   width: 25px;
   height: 25px;
-}
-
-button {
-  border: 1px solid black;
-  border-radius: 5px;
-  background-color: gray;
-  color: black;
-  transition: background-color 0.3s;
-}
-
-button:hover {
-  background-color: darkgray;
-}
-
-button:active {
-  transform: scale(1.05);
-}
-
-input, select {
-  display: inline-block;
-  background-color: lightgray;
-}
-
-label {
-  display: inline-block;
-  width: 130px;
-  text-align: right;
-}
-
-input {
-  display: inline-block;
-  width: 170px;
-  box-sizing: border-box;
 }

@@ -77,3 +77,8 @@ export function toArray(cartProducts: CartProducts): CartProduct[] {
     });
     return cartProductsArray;
 }
+
+
+export function isEmpty(cartProducts: CartProducts): boolean {
+    return Object.entries(cartProducts).length === 0;
+}

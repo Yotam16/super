@@ -51,7 +51,7 @@ function showPayedDialog(payedCart: Cart.Cart) {
     const payDialog = document.createElement("dialog");
     payDialog.classList.add("payed-dialog");
     payDialog.innerHTML = `
-        <h2 class="payed-dialog__text">Thanks, ${User.getCurrentUser().firstName} for paying ${payedCart.total}$</h2>
+        <h2 class="payed-dialog__text">Thanks, ${User.getCurrentUser().firstName} for paying ${payedCart.total.toFixed(2).toString()}$</h2>
         <form method="dialog" class="payed-dialog__actions">
             <button class="payed-dialog__button">OK</button>
         </form>
@@ -79,6 +79,8 @@ function showCart() {
     });
 
     CartController.addOnCartPayListener(() => {
+        if (Cart.isCartEmpty()) return;
+
         const payedCart = Cart.pay();
         const currentUsername = User.getCurrentUser().userName;
         User.addCartToUser(currentUsername, payedCart);
