@@ -6,15 +6,13 @@ export function attachAddToCartEvent(buttons) {
         var targetProductId = target.getAttribute("data-product-id");
         if (!targetProductId)
             throw new Error("Add to cart event - Couldn't find product ID to add to cart.");
-        var productId = Number(targetProductId);
-        if (Number.isNaN(productId))
-            throw new Error("Add to cart event - Product ID isnt a number");
-        onAddToCartClickedEvent(productId);
+        onAddToCartClickedEvent(targetProductId);
     }); });
 }
 export function onAddToCartClickedEvent(productId) {
-    console.log("Product id " + productId + " add to cart event fired");
     var product = getProductbyID(productId);
+    console.log("adding product to cart");
+    console.log(product);
     onAddToCartClickedListeners.forEach(function (listener) { return listener(product); });
 }
 export function addOnAddToCartClickedListener(callback) {

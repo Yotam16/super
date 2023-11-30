@@ -8,45 +8,25 @@ import * as CartView from "./Cart.view.js";
 import { toArray } from "./CartProducts.js";
 
 function onProductsLoaded(loadedProducts: Product.Product[]) {
-    console.log(`${loadedProducts.length} products loaded.`);
     Product.setProducts(loadedProducts);
+    showProductsGrid(Product.getProducts());
+
 }
 
 function showProductsGrid(products: Product.Product[]) {
     ProductGridView.renderProductsGridView(products);
     ProductGridViewController.addOnAddToCartClickedListener((product) => {
-
-        // COMMENT OUT FOR RECORD TYPE CONVERSION
-        // Cart.addToCart(product, currentCart);
-        // console.log(`Added product ${product.name} to cart:`)
-        // console.log(currentCart);
-        // playSound(SOUND_ADDTOCART);
-
+        Cart.addToCart(product);
     });
 }
 
-
 function main() {
 
-    Product.addOnProductsChangedListener((products) => {
-        showProductsGrid(products);
-        console.log(`cart:`)
-
-        Cart.addToCart(products[0]);
-        Cart.addToCart(products[1]);
-        Cart.addToCart(products[1]);
-        Cart.addToCart(products[1]);
-        Cart.addToCart(products[1]);
-        Cart.addToCart(products[2]);
-        Cart.addToCart(products[2]);
-        Cart.addToCart(products[3]);
-        Cart.addToCart(products[3]);
-        Cart.addToCart(products[3]);
-
-        console.log(Cart.getCart());
-        CartView.showCartView(Cart.getCart());
-
+    Cart.addOnCartUpdateListener((cart) => {
+        CartView.showCartView(cart);
     });
+
+    Cart.setCart(Cart.newCart(0));
 
     Product.loadAllProducts(onProductsLoaded);
 

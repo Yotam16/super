@@ -8,16 +8,16 @@ var totalPriceView = cartView.querySelector(BEM_CART_PEFIX + "total-price");
 var payButtonView = cartView.querySelector(BEM_CART_PEFIX + "button-pay");
 var cartProductsListView = cartView.querySelector(".cart-list");
 export function showCartView(cart) {
-    console.log(cartView);
-    setTitle("Yotam's Cart");
+    console.log(cart.total);
+    setTitle("Vlad's Cart");
     renderCartProductsView(cart.products);
-    setTotalPrice(CartProducts.calulateTotalPrice(cart.products));
+    setTotalPrice(cart.total);
 }
 function setTitle(title) {
     titleView.innerText = title;
 }
 function setTotalPrice(price) {
-    totalPriceView.innerText = price.toString();
+    totalPriceView.innerText = price.toFixed(2).toString();
 }
 function renderCartProductsView(cartProducts) {
     var products = CartProducts.toArray(cartProducts);

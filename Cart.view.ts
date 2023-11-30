@@ -13,13 +13,12 @@ const payButtonView = cartView.querySelector(BEM_CART_PEFIX + "button-pay") as H
 const cartProductsListView = cartView.querySelector(".cart-list") as HTMLUListElement;
 
 export function showCartView(cart: Cart) {
-    console.log(cartView);
-
-    setTitle("Yotam's Cart");
+    console.log(cart.total)
+    setTitle("Vlad's Cart");
 
     renderCartProductsView(cart.products);
 
-    setTotalPrice(CartProducts.calulateTotalPrice(cart.products));
+    setTotalPrice(cart.total);
 }
 
 function setTitle(title: string) {
@@ -27,7 +26,7 @@ function setTitle(title: string) {
 }
 
 function setTotalPrice(price: number) {
-    totalPriceView.innerText = price.toString();
+    totalPriceView.innerText = price.toFixed(2).toString();
 }
 
 function renderCartProductsView(cartProducts: CartProducts.CartProducts) {

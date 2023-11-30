@@ -13,18 +13,6 @@ export type Product = {
 
 export const products = [] as Product[];
 
-type OnProductChangedListener = (products: Product[]) => void;
-export const onProductsChangedListeners = [] as OnProductChangedListener[];
-
-export function addOnProductsChangedListener(callback: OnProductChangedListener) {
-    onProductsChangedListeners.push(callback);
-}
-
-export function OnProductsChanged(products: Product[]) {
-    console.log("On Products Changed event fired.")
-    onProductsChangedListeners.forEach((listener) => listener(products));
-}
-
 export function getProducts(): Product[] {
     return products.slice();
 }
@@ -49,7 +37,6 @@ export function setProducts(newProducts: Product[]) {
     clearProducts();
     newProducts.forEach((product) => products.push(product));
 
-    OnProductsChanged(products);
 }
 
 export function clearProducts() {
@@ -61,7 +48,6 @@ export async function loadAllProducts(onLoadCallback: OnProductsLoaded) {
     const filePath = "./product_list.json";
 
     try {
-
         const response = await fetch(filePath);
 
         if (!response.ok) {

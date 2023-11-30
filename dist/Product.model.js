@@ -35,14 +35,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 export var products = [];
-export var onProductsChangedListeners = [];
-export function addOnProductsChangedListener(callback) {
-    onProductsChangedListeners.push(callback);
-}
-export function OnProductsChanged(products) {
-    console.log("On Products Changed event fired.");
-    onProductsChangedListeners.forEach(function (listener) { return listener(products); });
-}
 export function getProducts() {
     return products.slice();
 }
@@ -61,7 +53,6 @@ export function getProductbyName(name) {
 export function setProducts(newProducts) {
     clearProducts();
     newProducts.forEach(function (product) { return products.push(product); });
-    OnProductsChanged(products);
 }
 export function clearProducts() {
     products.splice(0);

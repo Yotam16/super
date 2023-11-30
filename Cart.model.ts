@@ -13,13 +13,13 @@ const cart: Cart = newCart(0);
 
 
 export function newCart(uid: number): Cart {
-
     const cart: Cart = { userID: uid, products: CartProducts.empty(), total: 0 };
     return cart;
 }
 
 export function setCart(cart: Cart) {
     cart = { ...cart };
+    onUpdate();
 }
 
 export function getCart(): Cart {
@@ -28,19 +28,44 @@ export function getCart(): Cart {
 
 export function addToCart(product: Product, amount: number = 1) {
     CartProducts.add(getCart().products, product.PID, amount);
+    updateCartTotal();
+    onUpdate();
+}
+
+export function updateCartTotal() {
+    cart.total = CartProducts.calulateTotalPrice(cart.products);
 }
 
 export function subtractFromCart(product: Product, amount: number = 1) {
-    CartProducts.subtract(getCart().products, product.PID, amount)
+    CartProducts.subtract(getCart().products, product.PID, amount);
+    updateCartTotal();
+    onUpdate();
 }
 
 export function removeFromCart(product: Product) {
-    CartProducts.remove(getCart().products, product.PID)
+    CartProducts.remove(getCart().products, product.PID);
+    updateCartTotal();
+    onUpdate();
 }
+
 
 export function clearCart() {
     CartProducts.clear(getCart().products);
+    updateCartTotal();
+    onUpdate();
 }
+
+type OnCartUpdateListener = (cart: Cart) => void;
+export const onCartUpdateListener = [] as OnCartUpdateListener[];
+
+export function addOnCartUpdateListener(callback: OnCartUpdateListener) {
+    onCartUpdateListener.push(callback);
+}
+
+function onUpdate() {
+    onCartUpdateListener.forEach((listener) => listener(getCart()));
+}
+
 // comment out for Record list conversion
 
 // export function removeFromCart(product: Product, cart: Cart, quantity: number): Cart {

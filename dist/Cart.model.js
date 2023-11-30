@@ -17,6 +17,7 @@ export function newCart(uid) {
 }
 export function setCart(cart) {
     cart = __assign({}, cart);
+    onUpdate();
 }
 export function getCart() {
     return __assign({}, cart);
@@ -24,16 +25,34 @@ export function getCart() {
 export function addToCart(product, amount) {
     if (amount === void 0) { amount = 1; }
     CartProducts.add(getCart().products, product.PID, amount);
+    updateCartTotal();
+    onUpdate();
+}
+export function updateCartTotal() {
+    cart.total = CartProducts.calulateTotalPrice(cart.products);
 }
 export function subtractFromCart(product, amount) {
     if (amount === void 0) { amount = 1; }
     CartProducts.subtract(getCart().products, product.PID, amount);
+    updateCartTotal();
+    onUpdate();
 }
 export function removeFromCart(product) {
     CartProducts.remove(getCart().products, product.PID);
+    updateCartTotal();
+    onUpdate();
 }
 export function clearCart() {
     CartProducts.clear(getCart().products);
+    updateCartTotal();
+    onUpdate();
+}
+export var onCartUpdateListener = [];
+export function addOnCartUpdateListener(callback) {
+    onCartUpdateListener.push(callback);
+}
+function onUpdate() {
+    onCartUpdateListener.forEach(function (listener) { return listener(getCart()); });
 }
 // comment out for Record list conversion
 // export function removeFromCart(product: Product, cart: Cart, quantity: number): Cart {
