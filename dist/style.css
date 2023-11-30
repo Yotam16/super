@@ -337,7 +337,7 @@ body {
   height: 25px;
 }
 
-button {
+.search__button {
   border: 1px solid black;
   border-radius: 5px;
   background-color: gray;
@@ -345,11 +345,11 @@ button {
   transition: background-color 0.3s;
 }
 
-button:hover {
+.search__button:hover {
   background-color: darkgray;
 }
 
-button:active {
+.search__button:active {
   transform: scale(1.05);
 }
 
