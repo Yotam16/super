@@ -122,7 +122,7 @@ body {
     }
 
     &__button {
-        padding: 0.25rem;
+        padding: 0.1rem;
         height: 3rem;
         aspect-ratio: 1;
         margin-inline: 1rem;
@@ -171,14 +171,12 @@ body {
     padding: 2rem;
     overflow-y: auto;
 
-
     &__item {
         border: solid 2px #D51C4A;
         display: flex;
         flex-wrap: wrap;
         padding: 0.5rem;
         gap: 1rem;
-
         position: relative;
 
         &:hover {
@@ -357,4 +355,3 @@ body {
     width: 25px;
     height: 25px;
 }
-
