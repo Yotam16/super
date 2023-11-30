@@ -359,38 +359,3 @@ body {
     height: 25px;
 }
 
-
-
-.search__button {
-    border: 1px solid black;
-    border-radius: 5px;
-    background-color: gray;
-    color: black;
-    transition: background-color 0.3s;
-}
-
-.search__button:hover {
-    background-color: darkgray;
-}
-
-.search__button:active {
-    transform: scale(1.05);
-}
-
-input,
-select {
-    display: inline-block;
-    background-color: lightgray;
-}
-
-label {
-    display: inline-block;
-    width: 130px;
-    text-align: right;
-}
-
-input {
-    display: inline-block;
-    width: 170px;
-    box-sizing: border-box;
-}
