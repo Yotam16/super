@@ -1,4 +1,10 @@
+import { Cart, newCart } from "./Cart.model";
+
+const STORAGE_USERS = "users";
+
 type Gender = "male" | "female";
+
+type Username = string;
 
 export type User = {
   firstName: string;
@@ -6,15 +12,28 @@ export type User = {
   age: number;
   gender: Gender;
   email: string;
-  userName: string;
+  userName: Username;
   password: string;
+  carts: Cart[];
+  savedCart: Cart | undefined;
 };
 
 type Users = User[];
 const users: Users = [];
 
+let currentUser: Username = "";
+
+
+export function getUserByUsername(username: Username) {
+  const searchedUser = getUsers().find((user) => user.userName === username);
+
+  if (!searchedUser) throw new Error(`getUsers - username ${username} not found in users.`);
+
+  return searchedUser;
+}
+
 export function loadUsersFromStorage() {
-  const loadedUsers: Users = JSON.parse(localStorage.getItem("users") || "[]");
+  const loadedUsers: Users = JSON.parse(localStorage.getItem(STORAGE_USERS) || "[]");
 
   if (!loadedUsers) {
     throw new Error("loadUsersFromStorage function - no users found in storage");
@@ -31,13 +50,22 @@ export function setUsers(newUsers: Users) {
   newUsers.forEach((user) => users.push(user));
 }
 
-export function addUser(newUser: User): void {
-  users.push(newUser);
+export function addUser(newUser: Omit<User, "carts" | "savedCart">): void {
+  const user: User = {
+    ...newUser,
+    carts: new Array<Cart>(),
+    savedCart: undefined
+  }
+  users.push(user);
   saveUsersToStorage();
 }
 
 export function saveUsersToStorage(): void {
-  localStorage.setItem("users", JSON.stringify(users));
+  localStorage.setItem(STORAGE_USERS, JSON.stringify(users));
+}
+
+export function clearUsersFromStorage() {
+  localStorage.removeItem(STORAGE_USERS);
 }
 
 export function isUserNameExists(username: string): boolean {
@@ -48,31 +76,30 @@ export function isEmailExists(email: string): boolean {
   return users.some((user) => user.email === email);
 }
 
-// TODO - Safe login function
 export function login(username: string, password: string): boolean {
   return users.some(user => user.userName === username && user.password === password);
 }
 
-// TODO - a function that loads current user from storage
-export function loadCurrentUserFromStorage(): User | undefined {
+export function setCurrentUser(username: Username) {
+  currentUser = username;
+}
+
+export function loadCurrentUserFromStorage(): Username {
   const loadedCurrentUser = localStorage.getItem("currentUserName");
-  console.log(loadedCurrentUser)
 
   if (!loadedCurrentUser) throw new Error("LoadCurrentUser - no current user in storage")
 
-  const user = getUsers().find(user => user.userName === loadedCurrentUser);
+  const user = getUserByUsername(loadedCurrentUser);
 
   if (!user) throw new Error("LoadCurrentUser - current user from storage is not a user in database");
 
-  return user;
+  return user.userName;
 }
 
-// TODO - a function that saves current user to storage
 export function saveCurrentUserToStorage(username: string): void {
   localStorage.setItem("currentUserName", username);
 }
 
-// TODO - a function that deletes current user from storage
 export function deleteCurrentUserFromStorage() {
   localStorage.removeItem("currentUserName");
 }
