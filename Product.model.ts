@@ -1,9 +1,10 @@
 export type Category = "Meat" | "Dairy" | "Vegetables" | "Fruit" | "Bread" | "Hygene" |
     "Office" | "Clothing" | "Other";
 
+export type ProductId = string;
 export type Product = {
     name: string;
-    PID: number;
+    PID: ProductId;
     cat: Category;
     price: number;
     inStock: boolean;
@@ -28,7 +29,7 @@ export function getProducts(): Product[] {
     return products.slice();
 }
 
-export function getProductbyID(productId: number) {
+export function getProductbyID(productId: string) {
     const product = products.find((product) => product.PID === productId);
 
     if (!product) throw new Error(`getProduct - couldn't find product with id ${productId}`)
