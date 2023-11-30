@@ -315,13 +315,12 @@ body {
   overflow: hidden;
 }
 .payed-dialog__text {
-  margin: auto 0;
   font-size: 2rem;
   text-align: center;
 }
 .payed-dialog__button {
-  width: 6rem;
-  aspect-ratio: 2/1;
+  width: 8rem;
+  aspect-ratio: 3/1;
   border-radius: 6rem;
   background-color: white;
   color: #D51C4A;
