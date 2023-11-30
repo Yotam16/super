@@ -42,9 +42,7 @@ function navigateToLogin() {
 
 function showProductsGrid(products: Product.Product[]) {
     ProductGridView.renderProductsGridView(products);
-    ProductGridViewController.addOnAddToCartClickedListener((productId) => {
-        Cart.addToCartById(productId);
-    });
+
 }
 
 function showPayedDialog(payedCart: Cart.Cart) {
@@ -112,6 +110,9 @@ function main() {
 
     loadCurrentUser();
     Product.loadAllProducts(onProductsLoaded);
+    ProductGridViewController.addOnAddToCartClickedListener((productId) => {
+        Cart.addToCartById(productId);
+    });
     showCart();
 
     loadLogoutButton();

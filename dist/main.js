@@ -37,9 +37,6 @@ function navigateToLogin() {
 }
 function showProductsGrid(products) {
     ProductGridView.renderProductsGridView(products);
-    ProductGridViewController.addOnAddToCartClickedListener(function (productId) {
-        Cart.addToCartById(productId);
-    });
 }
 function showPayedDialog(payedCart) {
     var payDialog = document.createElement("dialog");
@@ -92,6 +89,9 @@ function showCategories() {
 function main() {
     loadCurrentUser();
     Product.loadAllProducts(onProductsLoaded);
+    ProductGridViewController.addOnAddToCartClickedListener(function (productId) {
+        Cart.addToCartById(productId);
+    });
     showCart();
     loadLogoutButton();
 }
