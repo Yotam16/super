@@ -62,6 +62,8 @@ function showCart() {
         User.setSavedCartToUser(User.getCurrentUser().userName, cart);
     });
     CartController.addOnCartPayListener(function () {
+        if (Cart.isCartEmpty())
+            return;
         var payedCart = Cart.pay();
         var currentUsername = User.getCurrentUser().userName;
         User.addCartToUser(currentUsername, payedCart);

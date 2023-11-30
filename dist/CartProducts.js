@@ -60,3 +60,6 @@ export function toArray(cartProducts) {
     });
     return cartProductsArray;
 }
+export function isEmpty(cartProducts) {
+    return Object.entries(cartProducts).length === 0;
+}

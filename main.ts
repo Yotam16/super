@@ -79,6 +79,8 @@ function showCart() {
     });
 
     CartController.addOnCartPayListener(() => {
+        if (Cart.isCartEmpty()) return;
+
         const payedCart = Cart.pay();
         const currentUsername = User.getCurrentUser().userName;
         User.addCartToUser(currentUsername, payedCart);
