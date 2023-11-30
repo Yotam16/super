@@ -46,7 +46,7 @@ function navigateToLogin() {
 }
 
 function showCart() {
-    CartView.showCartView(Cart.getCart());
+    CartView.showCartView(User.getCurrentUser().firstName, Cart.getCart());
 
     Cart.addOnCartUpdateListener((cart) => {
         CartView.updateCartProductsView(cart);

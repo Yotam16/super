@@ -40,7 +40,7 @@ function navigateToLogin() {
     window.location.href = "index.html";
 }
 function showCart() {
-    CartView.showCartView(Cart.getCart());
+    CartView.showCartView(User.getCurrentUser().firstName, Cart.getCart());
     Cart.addOnCartUpdateListener(function (cart) {
         CartView.updateCartProductsView(cart);
     });

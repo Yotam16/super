@@ -13,8 +13,8 @@ export const payButtonView = cartView.querySelector(BEM_CART_PEFIX + "button-pay
 
 const cartProductsListView = cartView.querySelector(".cart-list") as HTMLUListElement;
 
-export function showCartView(cart: Cart) {
-    setTitle("Vlad's Cart");
+export function showCartView(name: string, cart: Cart) {
+    setTitle(`${name}'s Cart`);
     setTotalPrice(0);
 
     updateCartProductsView(cart);
